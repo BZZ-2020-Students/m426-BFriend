@@ -1,12 +1,11 @@
 package bzz.groupa.bfriend.services;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping("/api/public")
+@RestController
 public class HelloWorld {
-    @RequestMapping(path = "/info", produces = "text/plain")
+    @GetMapping(value = "/")
     public String helloWorld() {
         return "Hello World!";
     }
