@@ -1,4 +1,7 @@
 openapi: "3.0.0"
+servers:
+    - url: http://localhost:8080
+      description: Development server
 info:
     version: "1.0.0"
     title: "bFriend API"
