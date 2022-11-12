@@ -1,7 +1,22 @@
 openapi: "3.0.0"
+
 servers:
     - url: http://localhost:8080
       description: Development server
+      variables:
+        username:
+            default: admin
+        password:
+            default: '123456'
+        role:
+            default: admin
+            enum:
+                - admin
+                - moderator
+                - passive_user
+                - active_user
+                - deactivated_user
+
 info:
     version: "1.0.0"
     title: "bFriend API"
@@ -16,13 +31,160 @@ paths:
                     description: the "Hello World" String
                     content:
                         text/plain:
-                            schema:
-                                $ref: "#/components/schemas/HelloWorld"
+                            examples:
+                                valid_hello_world:
+                                    value:
+                                        "Hello World!"
+    /api/auth/logout:
+        post:
+            summary: logs out a logged in user
+            responses:
+                "200":
+                    description: user has been successfully logged out
+                    content:
+                        text/plain:
+                            examples:
+                                valid_logout:
+                                    value:
+                                        "You have been logged out successfully!"
+    /api/auth/login:
+        post:
+            summary: logs in a user, if password and username is correct
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            properties:
+                                username:
+                                    description: the username of the user that wants to log in
+                                    type: string
+                                password:
+                                    description: the password of the user that wants to log in
+                                    type: string
+                                    format: password
+                            required:
+                                - username
+                                - password
+                        examples:
+                            login_as_admin:
+                                summary: logs in as admin
+                                value:
+                                    username: admin
+                                    password: '123456'
+                            login_as_passive_user:
+                                summary: logs in as passive user
+                                value:
+                                    username: passive_user
+                                    password: '123456'
+
+            responses:
+                "200":
+                    description: credentials are correct, user is logged in
+                    content:
+                        application/json:
+                            examples:
+                                successful_login:
+                                    value:
+                                        {
+                                            "roles": [
+                                                "ADMIN"
+                                            ],
+                                            "id": 1,
+                                            "username": "admin"
+                                        }
+                "401":
+                    description: wrong username/password
+                    content:
+                        text/plain:
+                            examples:
+                                failed_login:
+                                    value:
+                                        ""
+                "400":
+                    description: wrong formatting (e.g. password missing)
+                    content:
+                        application/json:
+                            examples:
+                                failed_login:
+                                    value:
+                                        {
+                                            "message": "Wrong formatting!"
+                                        }
+
+    /api/auth/register:
+        post:
+            summary: registers a user
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            properties:
+                                username:
+                                    description: the username of the user that wants to register
+                                    type: string
+                                password:
+                                    description: the password of the user that wants to log in
+                                    type: string
+                                    format: password
+                                role:
+                                    description: the roles the user will have, the parameter is required, but the array can be empty!
+                                    type: array
+                                    items:
+                                        type: string
+                            required:
+                                - username
+                                - password
+                                - role
+                        examples:
+                            register_as_admin:
+                                summary: logs in as admin
+                                value:
+                                    username: admin
+                                    password: '123456'
+                                    role: [admin]
+                            register_as_passive_user:
+                                summary: logs in as passive user
+                                value:
+                                    username: passive_user
+                                    password: '123456'
+                                    role: []
+            responses:
+                "200":
+                    description: user has been successfully registered
+                    content:
+                        application/json:
+                            examples:
+                                successful_register:
+                                    value:
+                                        {
+                                            "roles": [
+                                                "ADMIN"
+                                            ],
+                                            "id": 1,
+                                            "username": "admin"
+                                        }
+                "409":
+                    description: Username is already taken
+                    content:
+                        application/json:
+                            examples:
+                                failed_register:
+                                    value:
+                                        {
+                                            "message": "Username is already taken!"
+                                        }
+                "400":
+                    description: wrong formatting (e.g. password missing)
+                    content:
+                        application/json:
+                            examples:
+                                failed_register:
+                                    value:
+                                        {
+                                            "message": "Wrong formatting!"
+                                        }
+
 components:
-    schemas:
-        HelloWorld:
-            description: A hello world String
-            type: string
     securitySchemes:
         ApiKey:
             type: apiKey
