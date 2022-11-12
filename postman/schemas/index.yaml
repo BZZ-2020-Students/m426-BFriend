@@ -38,11 +38,12 @@ paths:
     /api/auth/logout:
         post:
             summary: logs out a logged in user
+            
             responses:
                 "200":
                     description: user has been successfully logged out
                     content:
-                        text/plain:
+                        application/json:
                             examples:
                                 valid_logout:
                                     value:
