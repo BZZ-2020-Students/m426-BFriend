@@ -10,9 +10,8 @@ public enum EnumUserRole {
     public static EnumUserRole getRoleByString(String stringRole) {
         stringRole = stringRole.toLowerCase();
 
-        var roles = EnumUserRole.values();
-        for (var role : roles) {
-            if (role.name().equals(stringRole)) {
+        for (var role : EnumUserRole.values()) {
+            if (role.name().toLowerCase().equals(stringRole)) {
                 return role;
             }
         }

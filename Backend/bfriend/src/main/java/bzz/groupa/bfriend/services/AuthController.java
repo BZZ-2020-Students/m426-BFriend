@@ -85,12 +85,12 @@ public class AuthController {
             return ResponseEntity.badRequest().body(new MessageResponse("Wrong formatting!"));
         }
 
-        if (userRepository.existsByUsername(signUpRequest.getEmail())) {
+        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(new MessageResponse("Username is already taken!"));
         }
         // Create new user's account
         User user = User.builder()
-                .username(signUpRequest.getEmail())
+                .email(signUpRequest.getEmail())
                 .password(encoder.encode(signUpRequest.getPassword()))
                 .build();
         Set<String> strRoles = signUpRequest.getRole();
