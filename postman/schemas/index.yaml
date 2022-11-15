@@ -56,7 +56,7 @@ paths:
                                         "You have been logged out successfully!"
     /api/auth/login:
         post:
-            summary: logs in a user, if password and username is correct
+            summary: logs in a user, if password and email is correct
             requestBody:
                 content:
                     application/json:
@@ -71,18 +71,18 @@ paths:
                                     type: string
                                     format: password
                             required:
-                                - username
+                                - email
                                 - password
                         examples:
                             login_as_admin:
                                 summary: logs in as admin
                                 value:
-                                    username: admin@bfriend.ch
+                                    email: admin@bfriend.ch
                                     password: '123456'
                             login_as_passive_user:
                                 summary: logs in as passive user
                                 value:
-                                    username: passive_user@bfriend.ch
+                                    email: passive_user@bfriend.ch
                                     password: '123456'
 
             responses:

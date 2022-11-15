@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "86a513a2-7435-4af6-a43e-42e12bfef686",
+		"_postman_id": "b7cbf82f-642f-4128-9021-c10a84598e37",
 		"name": "generated",
 		"description": "Find people with the same hobbies and interests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_uid": "19464364-86a513a2-7435-4af6-a43e-42e12bfef686"
+		"_uid": "19464364-b7cbf82f-642f-4128-9021-c10a84598e37"
 	},
 	"item": [
 		{
@@ -12,7 +12,7 @@
 			"item": [
 				{
 					"name": "logs out a logged in user",
-					"id": "98ea2f68-504c-4a6d-b975-904169d2c30c",
+					"id": "442cc3d0-3d9f-4e52-aea5-e029468adec2",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -54,7 +54,7 @@
 					},
 					"response": [
 						{
-							"id": "8f965ed4-f136-43a1-9304-1a93732a5f91",
+							"id": "3253f6c7-3e10-4b2e-b7fb-044223f6d0ca",
 							"name": "user has been successfully logged out",
 							"originalRequest": {
 								"method": "POST",
@@ -108,8 +108,8 @@
 					]
 				},
 				{
-					"name": "logs in a user, if password and username is correct",
-					"id": "92f9fc49-4a8e-4d48-bddc-3ee51d0a75c8",
+					"name": "logs in a user, if password and email is correct",
+					"id": "3b10d625-3e80-4c86-bb06-4c4e11bd48f9",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -164,7 +164,7 @@
 					},
 					"response": [
 						{
-							"id": "63a4a091-a534-4e5b-8250-158ed1e65291",
+							"id": "8fb29459-7bea-424f-9bb4-95619da1f0e9",
 							"name": "credentials are correct, user is logged in",
 							"originalRequest": {
 								"method": "POST",
@@ -177,7 +177,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"123456\"\n}",
+									"raw": "{\n\t\"email\": \"admin@bfriend.ch\",\n\t\"password\": \"123456\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -222,10 +222,10 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n\t\"roles\": [\n\t\t\"ADMIN\"\n\t],\n\t\"id\": 1,\n\t\"username\": \"admin\"\n}"
+							"body": "{\n\t\"roles\": [\n\t\t\"ADMIN\"\n\t],\n\t\"id\": 1,\n\t\"email\": \"admin\"\n}"
 						},
 						{
-							"id": "0924ef3c-a6ac-49b8-82b8-479dcb3009a0",
+							"id": "5b9a0003-0c26-4e3b-8632-f2de01bab7f4",
 							"name": "wrong formatting (e.g. password missing)",
 							"originalRequest": {
 								"method": "POST",
@@ -238,7 +238,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"123456\"\n}",
+									"raw": "{\n\t\"email\": \"admin@bfriend.ch\",\n\t\"password\": \"123456\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -286,8 +286,8 @@
 							"body": "{\n\t\"message\": \"Wrong formatting!\"\n}"
 						},
 						{
-							"id": "2d799a59-a8fd-4352-ab0d-968fefe73d63",
-							"name": "wrong username/password",
+							"id": "40890206-df6d-4a73-b11e-7349e568f8ee",
+							"name": "wrong email/password",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -299,7 +299,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"123456\"\n}",
+									"raw": "{\n\t\"email\": \"admin@bfriend.ch\",\n\t\"password\": \"123456\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -350,7 +350,7 @@
 				},
 				{
 					"name": "registers a user",
-					"id": "eaa89b1b-bbc5-41bc-8825-8de0b8709339",
+					"id": "ec8d9c84-7463-4d3e-afc8-92f0b4962d89",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -405,7 +405,7 @@
 					},
 					"response": [
 						{
-							"id": "9e78edc8-70a9-4ce4-ba38-95cfa1a6fca0",
+							"id": "31365710-cb8a-4faf-9dbe-1ef59e452550",
 							"name": "user has been successfully registered",
 							"originalRequest": {
 								"method": "POST",
@@ -463,10 +463,10 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n\t\"roles\": [\n\t\t\"ADMIN\"\n\t],\n\t\"id\": 1,\n\t\"username\": \"admin\"\n}"
+							"body": "{\n\t\"roles\": [\n\t\t\"ADMIN\"\n\t],\n\t\"id\": 1,\n\t\"email\": \"admin\"\n}"
 						},
 						{
-							"id": "cd41301d-5419-41cd-bb6d-3c673eaea32e",
+							"id": "3eb1d8c1-50d0-4589-ad53-4cb6f867772c",
 							"name": "wrong formatting (e.g. password missing)",
 							"originalRequest": {
 								"method": "POST",
@@ -527,7 +527,7 @@
 							"body": "{\n\t\"message\": \"Wrong formatting!\"\n}"
 						},
 						{
-							"id": "3b6c23d8-f8ed-4a61-afc6-f98f2c671349",
+							"id": "9b2b4e10-8579-4fd2-b1c6-45758ed44e5d",
 							"name": "Username is already taken",
 							"originalRequest": {
 								"method": "POST",
@@ -590,11 +590,11 @@
 					]
 				}
 			],
-			"id": "ab8e8609-b0e9-4c6b-b355-b5a941c32bc8"
+			"id": "57442978-23de-49fb-b32b-c09e9dab2a20"
 		},
 		{
 			"name": "returns a \"Hello World\" String",
-			"id": "a6a05466-3c82-4569-b897-802d2d9ae31f",
+			"id": "1d9457e4-d420-4a31-bd1a-807c42f20d71",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -634,7 +634,7 @@
 			},
 			"response": [
 				{
-					"id": "6c18fdff-64aa-4fac-a001-f131b5edbf25",
+					"id": "4eac3d61-1780-436b-8280-6975889b1af9",
 					"name": "the \"Hello World\" String",
 					"originalRequest": {
 						"method": "GET",
@@ -708,7 +708,7 @@
 	},
 	"variable": [
 		{
-			"id": "fbd54c20-234a-4552-9997-f673912df036",
+			"id": "a0d2a51a-c456-4fac-8fc9-1dc84675787f",
 			"key": "email",
 			"value": "admin@bfriend.ch",
 			"type": "any",
@@ -718,7 +718,7 @@
 			}
 		},
 		{
-			"id": "cf2a941b-4517-489d-b5b2-f8e18cf57460",
+			"id": "1494e041-d060-4df7-a35a-f9e732c3dd80",
 			"key": "password",
 			"value": "123456",
 			"type": "any",
@@ -728,7 +728,7 @@
 			}
 		},
 		{
-			"id": "a4c9fe42-c727-4789-b87b-438d54850bed",
+			"id": "b29e949b-8558-4f12-9fdd-7935caa08aab",
 			"key": "role",
 			"value": "admin",
 			"type": "any",
@@ -738,7 +738,7 @@
 			}
 		},
 		{
-			"id": "908b104c-9752-4dbc-90b0-523c0fd121f4",
+			"id": "dc34f3db-2e70-4e88-9241-3e47582eeedb",
 			"key": "baseUrl",
 			"value": "http://localhost:8080",
 			"type": "string"
