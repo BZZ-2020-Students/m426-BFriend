@@ -1,10 +1,15 @@
 package bzz.groupa.bfriend.model;
 
+import bzz.groupa.bfriend.enums.Gender;
+import bzz.groupa.bfriend.enums.Hobby;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -14,7 +19,9 @@ import static bzz.groupa.bfriend.util.GlobalVars.*;
 
 @Getter
 @Setter
+@Builder
 @EnableAutoConfiguration
+@AllArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
@@ -23,9 +30,20 @@ public class User {
     private long id;
 
     @NotNull
-    @Size(min = MIN_USERNAME_LENGTH, max = MAX_USERNAME_LENGTH)
-    @Column(length = MAX_USERNAME_LENGTH, unique = true)
-    private String username;
+    @Email
+    @Size(max = MAX_EMAIL_LENGTH)
+    @Column(length = MAX_EMAIL_LENGTH, unique = true)
+    private String email;
+
+    @NotNull
+    @Size(min = MIN_NAME_LENGTH, max = MAX_NAME_LENGTH)
+    @Column(length = MAX_NAME_LENGTH)
+    private String firstname;
+
+    @NotNull
+    @Size(min = MIN_NAME_LENGTH, max = MAX_NAME_LENGTH)
+    @Column(length = MAX_NAME_LENGTH)
+    private String lastName;
 
     @NotNull
     @Size(min = MIN_PASSWORD_LENGTH, max = MAX_PASSWORD_LENGTH)
@@ -36,6 +54,29 @@ public class User {
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<UserRole> roles;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    @NotNull
+    @Size(max = MAX_LOCATION_LENGTH)
+    @Column(length = MAX_LOCATION_LENGTH)
+    private String location;
+
+    // list of hobbies
+    @NotNull
+    @ElementCollection(targetClass = Hobby.class)
+    @Enumerated(EnumType.STRING)
+    private Set<Hobby> hobbies;
+
+    @NotNull
+    @Size(max = MAX_BASE64_LENGTH)
+    @Column(length = MAX_BASE64_LENGTH)
+    private String profilePicture;
+
+    @Size(max = MAX_AGE)
+    private int age;
+
     private Date lastLogin;
 
     private Date accountCreated;
@@ -45,17 +86,10 @@ public class User {
         lastLogin = accountCreated;
     }
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-        accountCreated = new Date();
-        lastLogin = accountCreated;
-    }
-
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "username='" + email + '\'' +
                 ", roles=" + roles +
                 '}';
     }

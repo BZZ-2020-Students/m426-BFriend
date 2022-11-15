@@ -1,15 +1,22 @@
 package bzz.groupa.bfriend.security.payload.request;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
 import static bzz.groupa.bfriend.util.GlobalVars.*;
 
+@Getter
+@Setter
 public class SignupRequest {
     @NotBlank
-    @Size(min = MIN_USERNAME_LENGTH, max = MAX_USERNAME_LENGTH)
-    private String username;
+    @Size(max = MAX_EMAIL_LENGTH)
+    @Email
+    private String email;
 
     private Set<String> role;
 
@@ -17,27 +24,31 @@ public class SignupRequest {
     @Size(min = MIN_PASSWORD_LENGTH, max = MAX_PASSWORD_LENGTH)
     private String password;
 
-    public String getUsername() {
-        return username;
-    }
+    @NotBlank
+    @Size(max = MAX_NAME_LENGTH)
+    private String firstname;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    @NotBlank
+    @Size(max = MAX_NAME_LENGTH)
+    private String Lastname;
 
-    public String getPassword() {
-        return password;
-    }
+    @NotBlank
+    private Set<String> hobbys;
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    @NotBlank
+    @Size(max = MAX_LOCATION_LENGTH)
+    private String location;
 
-    public Set<String> getRole() {
-        return this.role;
-    }
+    @NotBlank
+    private String profilepicture;
 
-    public void setRole(Set<String> role) {
-        this.role = role;
-    }
+    @NotBlank
+    private String gender;
+
+    @NotBlank
+    @Size(max = MAX_AGE)
+    private int age;
+
+
+
 }
