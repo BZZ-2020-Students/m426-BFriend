@@ -62,9 +62,10 @@ paths:
                     application/json:
                         schema:
                             properties:
-                                username:
-                                    description: the username of the user that wants to log in
+                                email:
+                                    description: the email of the user that wants to log in
                                     type: string
+                                    format: email
                                 password:
                                     description: the password of the user that wants to log in
                                     type: string
@@ -76,12 +77,12 @@ paths:
                             login_as_admin:
                                 summary: logs in as admin
                                 value:
-                                    username: admin
+                                    username: admin@bfriend.ch
                                     password: '123456'
                             login_as_passive_user:
                                 summary: logs in as passive user
                                 value:
-                                    username: passive_user
+                                    username: passive_user@bfriend.ch
                                     password: '123456'
 
             responses:
@@ -97,10 +98,10 @@ paths:
                                                 "ADMIN"
                                             ],
                                             "id": 1,
-                                            "username": "admin"
+                                            "email": "admin"
                                         }
                 "401":
-                    description: wrong username/password
+                    description: wrong email/password
                     content:
                         text/plain:
                             examples:
@@ -129,6 +130,7 @@ paths:
                                 email:
                                     description: the email of the user that wants to log in
                                     type: string
+                                    format: email
                                 firstname:
                                     description: the firstname of the user that wants to log in
                                     type: string
@@ -212,7 +214,7 @@ paths:
                                                 "ADMIN"
                                             ],
                                             "id": 1,
-                                            "username": "admin"
+                                            "email": "admin"
                                         }
                 "409":
                     description: Username is already taken

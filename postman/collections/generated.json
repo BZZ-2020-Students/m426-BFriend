@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "59396f0f-f53f-42f6-b350-219d1ed72564",
+		"_postman_id": "86a513a2-7435-4af6-a43e-42e12bfef686",
 		"name": "generated",
 		"description": "Find people with the same hobbies and interests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_uid": "19464364-59396f0f-f53f-42f6-b350-219d1ed72564"
+		"_uid": "19464364-86a513a2-7435-4af6-a43e-42e12bfef686"
 	},
 	"item": [
 		{
@@ -12,7 +12,7 @@
 			"item": [
 				{
 					"name": "logs out a logged in user",
-					"id": "aa8ce550-c2a4-43cf-a08b-2bd3fdd3fe3c",
+					"id": "98ea2f68-504c-4a6d-b975-904169d2c30c",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -36,8 +36,9 @@
 							],
 							"variable": [
 								{
-									"key": "username",
-									"value": "{{username}}"
+									"key": "email",
+									"value": "{{email}}",
+									"description": " (This can only be one of admin@bfriend.ch,moderator@bfriend.ch,passive_user@bfriend.ch,active_user@bfriend.ch,deactivated_user@bfriend.ch)"
 								},
 								{
 									"key": "password",
@@ -53,7 +54,7 @@
 					},
 					"response": [
 						{
-							"id": "a49025a3-87ee-4150-ba6d-9b7435c37b7b",
+							"id": "8f965ed4-f136-43a1-9304-1a93732a5f91",
 							"name": "user has been successfully logged out",
 							"originalRequest": {
 								"method": "POST",
@@ -76,8 +77,9 @@
 									],
 									"variable": [
 										{
-											"key": "username",
-											"value": "{{username}}"
+											"key": "email",
+											"value": "{{email}}",
+											"description": " (This can only be one of admin@bfriend.ch,moderator@bfriend.ch,passive_user@bfriend.ch,active_user@bfriend.ch,deactivated_user@bfriend.ch)"
 										},
 										{
 											"key": "password",
@@ -107,7 +109,7 @@
 				},
 				{
 					"name": "logs in a user, if password and username is correct",
-					"id": "38cb397c-b1ac-4a71-874e-4e8a740c063f",
+					"id": "92f9fc49-4a8e-4d48-bddc-3ee51d0a75c8",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -125,7 +127,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"123456\"\n}",
+							"raw": "{\n\t\"email\": \"admin@bfriend.ch\",\n\t\"password\": \"123456\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -144,8 +146,9 @@
 							],
 							"variable": [
 								{
-									"key": "username",
-									"value": "{{username}}"
+									"key": "email",
+									"value": "{{email}}",
+									"description": " (This can only be one of admin@bfriend.ch,moderator@bfriend.ch,passive_user@bfriend.ch,active_user@bfriend.ch,deactivated_user@bfriend.ch)"
 								},
 								{
 									"key": "password",
@@ -161,7 +164,7 @@
 					},
 					"response": [
 						{
-							"id": "17de16ab-bb69-4858-af1d-d01de2a9e8e8",
+							"id": "63a4a091-a534-4e5b-8250-158ed1e65291",
 							"name": "credentials are correct, user is logged in",
 							"originalRequest": {
 								"method": "POST",
@@ -174,7 +177,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"123456\"\n}",
+									"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"123456\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -193,8 +196,9 @@
 									],
 									"variable": [
 										{
-											"key": "username",
-											"value": "{{username}}"
+											"key": "email",
+											"value": "{{email}}",
+											"description": " (This can only be one of admin@bfriend.ch,moderator@bfriend.ch,passive_user@bfriend.ch,active_user@bfriend.ch,deactivated_user@bfriend.ch)"
 										},
 										{
 											"key": "password",
@@ -218,10 +222,10 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"roles\": [\n    \"ADMIN\"\n  ],\n  \"id\": 1,\n  \"username\": \"admin\"\n}"
+							"body": "{\n\t\"roles\": [\n\t\t\"ADMIN\"\n\t],\n\t\"id\": 1,\n\t\"username\": \"admin\"\n}"
 						},
 						{
-							"id": "c41c3605-ab60-4424-b4fc-bf715c86cf3b",
+							"id": "0924ef3c-a6ac-49b8-82b8-479dcb3009a0",
 							"name": "wrong formatting (e.g. password missing)",
 							"originalRequest": {
 								"method": "POST",
@@ -234,7 +238,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"123456\"\n}",
+									"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"123456\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -253,8 +257,9 @@
 									],
 									"variable": [
 										{
-											"key": "username",
-											"value": "{{username}}"
+											"key": "email",
+											"value": "{{email}}",
+											"description": " (This can only be one of admin@bfriend.ch,moderator@bfriend.ch,passive_user@bfriend.ch,active_user@bfriend.ch,deactivated_user@bfriend.ch)"
 										},
 										{
 											"key": "password",
@@ -278,10 +283,10 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"message\": \"Wrong formatting!\"\n}"
+							"body": "{\n\t\"message\": \"Wrong formatting!\"\n}"
 						},
 						{
-							"id": "de58ac2a-b12a-4dac-a9e7-acef99ccd526",
+							"id": "2d799a59-a8fd-4352-ab0d-968fefe73d63",
 							"name": "wrong username/password",
 							"originalRequest": {
 								"method": "POST",
@@ -294,7 +299,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"123456\"\n}",
+									"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"123456\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -313,8 +318,9 @@
 									],
 									"variable": [
 										{
-											"key": "username",
-											"value": "{{username}}"
+											"key": "email",
+											"value": "{{email}}",
+											"description": " (This can only be one of admin@bfriend.ch,moderator@bfriend.ch,passive_user@bfriend.ch,active_user@bfriend.ch,deactivated_user@bfriend.ch)"
 										},
 										{
 											"key": "password",
@@ -344,7 +350,7 @@
 				},
 				{
 					"name": "registers a user",
-					"id": "aa3b0342-3848-43b1-88b7-86d6f1fa7c59",
+					"id": "eaa89b1b-bbc5-41bc-8825-8de0b8709339",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -362,7 +368,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"email\": \"admin1@test.ch\",\n  \"password\": \"123456\",\n  \"role\": [],\n  \"firstname\" : \"robert\",\n  \"lastname\" : \"Franz\",\n  \"location\" : \"Zuerich\",\n  \"gender\" : \"MALE\",\n  \"hobbies\" : [\n      \"FOOTBALL\",\n      \"BASKETBALL\"\n  ],\n  \"age\" : 3,\n  \"profilepicture\" : \"test\"\n\n}",
+							"raw": "{\n\t\"email\": \"admin@bfriend.ch\",\n\t\"password\": \"123456\",\n\t\"role\": [\n\t\t\"admin\"\n\t],\n\t\"firstname\": \"Admin\",\n\t\"lastname\": \"Administrator\",\n\t\"hobbies\": [\n\t\t\"FOOTBALL\",\n\t\t\"FISHING\"\n\t],\n\t\"location\": \"Zürich\",\n\t\"profilepicture\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAV4AAACWBAMAAABkyf1EAAAAG1BMVEXMzMyWlpacnJyqqqrFxcWxsbGjo6O3t7e+vr6He3KoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEcElEQVR4nO2aTW/bRhCGh18ij1zKknMkbbf2UXITIEeyMhIfRaF1exQLA/JRclslRykO+rs7s7s0VwytNmhJtsA8gHZEcox9PTs7uysQgGEYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhmGYr2OWRK/ReIKI8Zt7Hb19wTcQ0uTkGh13bQupcw7gPOvdo12/5CzNtNR7xLUtNtT3CGBQ6g3InjY720pvofUec22LJPr8PhEp2OMPyI40PdwWUdronCu9yQpdPx53bQlfLKnfOVhlnDYRBXve4Ov+IZTeMgdedm0NR+xoXJeQvdJ3CvziykSukwil16W/Oe7aGjIjqc/9ib4jQlJy0uArtN4A0+cvXFvDkmUJ47sJ1Y1ATLDNVXZkNPIepQzxy1ki9fqiwbUj/I+64zxWNzyZnPuhvohJ9K70VvXBixpcu2SAHU+Xd9EKdEJDNpYP3AQr3bQSpPQ6Y6/4dl1z7ZDbArsszjA7L0g7ibB0CDcidUWVoErvIMKZh2Xs0LUzcLW6V5NfiUgNEbaYmAVL6bXl0nJRc+1S72ua/D/cTjGPlQj7eUqd7A096rYlRjdPYlhz7VIvxpVG3cemDKF+WAwLY/6XelOZKTXXzsC4xvDjjtSN6kHLhLke6PrwM8h1raf40qjrGO7H9aTEbduucjS04ZrYU/4iuS5Z2Hdt0rvCLFdmLEXcU30AGddST62o+sLcf5l6k7CP+ru4pLYqX/VFyxbm/utQbx/r22ZEbTb2f5I2kns1Y1OQR8ZyofX+TjJxj1Rz7QQVnf1QzR26Oth0ueJVYcRP6ZUPac/Rx/5M6ixO1dhSrT3Y1DpiYmx3tF4ZUdpz9LD/dSg9PXES0LB71BwcGjKROuV28lnvnv7HHJsezheBGH5+X2CfSfRbMKW+5aGs3JFjMrjGibJc0S7TJzqjHrh2hDybj9XRXNZa89Aro55XBdbW5wti2c/5WJ7jJ1RolVUn/HWpb0I58Tziup6Rx7Dm2hnbRP1GM9PW/NFmQ4PtVRVN63Wvxfmu5sowDMMwDMMwDMMwDMMwDMMwDMMwzL+CpT//F/6beoV8zb2Jmt4Qryx6lTUCsENQ75HOkhXAO3EPVgyQtKtUy3C/e+FJg17Zjnew1Xrdb9InbG4WqfUAftG+WhLwPVyfg536+MU7m4C1CMk4ZznpXZzDYI1PDL2nS1hpvc5cNd7E2sJg05Fe7/7d3Fln8Cvc3bwB616auxsKl4WPghjemHrDqyDWeu1UNW5s2btPnSQ75oOdunEwWazfwgVG0kqluYCM9OIjWOGnfA2b9G4Ha63XKpvQ8perTvTifJNhi6+WMWmi7smEZf6G8MmhlyGq+NqP8GV84TLuJr7UIQVx+bDEoEpRZIz42gs40OuN4Mv8hXzelV7KX1isH+ewTWckikyVv+CfHuqVF7I16gN0VKypX6wPsE+zFPzkinolU9UH8OMGvSpnZqKsv13p/RsMun6X5x/y2LeAr8O66lsBwzBMP/wJfyGq8pgBk6IAAAAASUVORK5CYII=\",\n\t\"gender\": \"MALE\",\n\t\"age\": 12\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -381,8 +387,9 @@
 							],
 							"variable": [
 								{
-									"key": "username",
-									"value": "{{username}}"
+									"key": "email",
+									"value": "{{email}}",
+									"description": " (This can only be one of admin@bfriend.ch,moderator@bfriend.ch,passive_user@bfriend.ch,active_user@bfriend.ch,deactivated_user@bfriend.ch)"
 								},
 								{
 									"key": "password",
@@ -398,7 +405,7 @@
 					},
 					"response": [
 						{
-							"id": "aa69ec6e-cbea-4e19-a7fc-199947f7230a",
+							"id": "9e78edc8-70a9-4ce4-ba38-95cfa1a6fca0",
 							"name": "user has been successfully registered",
 							"originalRequest": {
 								"method": "POST",
@@ -411,7 +418,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"123456\",\n  \"role\": [\n    \"admin\"\n  ]\n}",
+									"raw": "{\n\t\"email\": \"admin@bfriend.ch\",\n\t\"password\": \"123456\",\n\t\"role\": [\n\t\t\"admin\"\n\t],\n\t\"firstname\": \"Admin\",\n\t\"lastname\": \"Administrator\",\n\t\"hobbies\": [\n\t\t\"FOOTBALL\",\n\t\t\"FISHING\"\n\t],\n\t\"location\": \"Zürich\",\n\t\"profilepicture\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAV4AAACWBAMAAABkyf1EAAAAG1BMVEXMzMyWlpacnJyqqqrFxcWxsbGjo6O3t7e+vr6He3KoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEcElEQVR4nO2aTW/bRhCGh18ij1zKknMkbbf2UXITIEeyMhIfRaF1exQLA/JRclslRykO+rs7s7s0VwytNmhJtsA8gHZEcox9PTs7uysQgGEYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhmGYr2OWRK/ReIKI8Zt7Hb19wTcQ0uTkGh13bQupcw7gPOvdo12/5CzNtNR7xLUtNtT3CGBQ6g3InjY720pvofUec22LJPr8PhEp2OMPyI40PdwWUdronCu9yQpdPx53bQlfLKnfOVhlnDYRBXve4Ov+IZTeMgdedm0NR+xoXJeQvdJ3CvziykSukwil16W/Oe7aGjIjqc/9ib4jQlJy0uArtN4A0+cvXFvDkmUJ47sJ1Y1ATLDNVXZkNPIepQzxy1ki9fqiwbUj/I+64zxWNzyZnPuhvohJ9K70VvXBixpcu2SAHU+Xd9EKdEJDNpYP3AQr3bQSpPQ6Y6/4dl1z7ZDbArsszjA7L0g7ibB0CDcidUWVoErvIMKZh2Xs0LUzcLW6V5NfiUgNEbaYmAVL6bXl0nJRc+1S72ua/D/cTjGPlQj7eUqd7A096rYlRjdPYlhz7VIvxpVG3cemDKF+WAwLY/6XelOZKTXXzsC4xvDjjtSN6kHLhLke6PrwM8h1raf40qjrGO7H9aTEbduucjS04ZrYU/4iuS5Z2Hdt0rvCLFdmLEXcU30AGddST62o+sLcf5l6k7CP+ru4pLYqX/VFyxbm/utQbx/r22ZEbTb2f5I2kns1Y1OQR8ZyofX+TjJxj1Rz7QQVnf1QzR26Oth0ueJVYcRP6ZUPac/Rx/5M6ixO1dhSrT3Y1DpiYmx3tF4ZUdpz9LD/dSg9PXES0LB71BwcGjKROuV28lnvnv7HHJsezheBGH5+X2CfSfRbMKW+5aGs3JFjMrjGibJc0S7TJzqjHrh2hDybj9XRXNZa89Aro55XBdbW5wti2c/5WJ7jJ1RolVUn/HWpb0I58Tziup6Rx7Dm2hnbRP1GM9PW/NFmQ4PtVRVN63Wvxfmu5sowDMMwDMMwDMMwDMMwDMMwDMMwzL+CpT//F/6beoV8zb2Jmt4Qryx6lTUCsENQ75HOkhXAO3EPVgyQtKtUy3C/e+FJg17Zjnew1Xrdb9InbG4WqfUAftG+WhLwPVyfg536+MU7m4C1CMk4ZznpXZzDYI1PDL2nS1hpvc5cNd7E2sJg05Fe7/7d3Fln8Cvc3bwB616auxsKl4WPghjemHrDqyDWeu1UNW5s2btPnSQ75oOdunEwWazfwgVG0kqluYCM9OIjWOGnfA2b9G4Ha63XKpvQ8perTvTifJNhi6+WMWmi7smEZf6G8MmhlyGq+NqP8GV84TLuJr7UIQVx+bDEoEpRZIz42gs40OuN4Mv8hXzelV7KX1isH+ewTWckikyVv+CfHuqVF7I16gN0VKypX6wPsE+zFPzkinolU9UH8OMGvSpnZqKsv13p/RsMun6X5x/y2LeAr8O66lsBwzBMP/wJfyGq8pgBk6IAAAAASUVORK5CYII=\",\n\t\"gender\": \"MALE\",\n\t\"age\": 12\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -430,8 +437,9 @@
 									],
 									"variable": [
 										{
-											"key": "username",
-											"value": "{{username}}"
+											"key": "email",
+											"value": "{{email}}",
+											"description": " (This can only be one of admin@bfriend.ch,moderator@bfriend.ch,passive_user@bfriend.ch,active_user@bfriend.ch,deactivated_user@bfriend.ch)"
 										},
 										{
 											"key": "password",
@@ -455,10 +463,10 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"roles\": [\n    \"ADMIN\"\n  ],\n  \"id\": 1,\n  \"username\": \"admin\"\n}"
+							"body": "{\n\t\"roles\": [\n\t\t\"ADMIN\"\n\t],\n\t\"id\": 1,\n\t\"username\": \"admin\"\n}"
 						},
 						{
-							"id": "708464e6-8731-4a3c-b42b-2b3357d01712",
+							"id": "cd41301d-5419-41cd-bb6d-3c673eaea32e",
 							"name": "wrong formatting (e.g. password missing)",
 							"originalRequest": {
 								"method": "POST",
@@ -471,7 +479,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"123456\",\n  \"role\": [\n    \"admin\"\n  ]\n}",
+									"raw": "{\n\t\"email\": \"admin@bfriend.ch\",\n\t\"password\": \"123456\",\n\t\"role\": [\n\t\t\"admin\"\n\t],\n\t\"firstname\": \"Admin\",\n\t\"lastname\": \"Administrator\",\n\t\"hobbies\": [\n\t\t\"FOOTBALL\",\n\t\t\"FISHING\"\n\t],\n\t\"location\": \"Zürich\",\n\t\"profilepicture\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAV4AAACWBAMAAABkyf1EAAAAG1BMVEXMzMyWlpacnJyqqqrFxcWxsbGjo6O3t7e+vr6He3KoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEcElEQVR4nO2aTW/bRhCGh18ij1zKknMkbbf2UXITIEeyMhIfRaF1exQLA/JRclslRykO+rs7s7s0VwytNmhJtsA8gHZEcox9PTs7uysQgGEYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhmGYr2OWRK/ReIKI8Zt7Hb19wTcQ0uTkGh13bQupcw7gPOvdo12/5CzNtNR7xLUtNtT3CGBQ6g3InjY720pvofUec22LJPr8PhEp2OMPyI40PdwWUdronCu9yQpdPx53bQlfLKnfOVhlnDYRBXve4Ov+IZTeMgdedm0NR+xoXJeQvdJ3CvziykSukwil16W/Oe7aGjIjqc/9ib4jQlJy0uArtN4A0+cvXFvDkmUJ47sJ1Y1ATLDNVXZkNPIepQzxy1ki9fqiwbUj/I+64zxWNzyZnPuhvohJ9K70VvXBixpcu2SAHU+Xd9EKdEJDNpYP3AQr3bQSpPQ6Y6/4dl1z7ZDbArsszjA7L0g7ibB0CDcidUWVoErvIMKZh2Xs0LUzcLW6V5NfiUgNEbaYmAVL6bXl0nJRc+1S72ua/D/cTjGPlQj7eUqd7A096rYlRjdPYlhz7VIvxpVG3cemDKF+WAwLY/6XelOZKTXXzsC4xvDjjtSN6kHLhLke6PrwM8h1raf40qjrGO7H9aTEbduucjS04ZrYU/4iuS5Z2Hdt0rvCLFdmLEXcU30AGddST62o+sLcf5l6k7CP+ru4pLYqX/VFyxbm/utQbx/r22ZEbTb2f5I2kns1Y1OQR8ZyofX+TjJxj1Rz7QQVnf1QzR26Oth0ueJVYcRP6ZUPac/Rx/5M6ixO1dhSrT3Y1DpiYmx3tF4ZUdpz9LD/dSg9PXES0LB71BwcGjKROuV28lnvnv7HHJsezheBGH5+X2CfSfRbMKW+5aGs3JFjMrjGibJc0S7TJzqjHrh2hDybj9XRXNZa89Aro55XBdbW5wti2c/5WJ7jJ1RolVUn/HWpb0I58Tziup6Rx7Dm2hnbRP1GM9PW/NFmQ4PtVRVN63Wvxfmu5sowDMMwDMMwDMMwDMMwDMMwDMMwzL+CpT//F/6beoV8zb2Jmt4Qryx6lTUCsENQ75HOkhXAO3EPVgyQtKtUy3C/e+FJg17Zjnew1Xrdb9InbG4WqfUAftG+WhLwPVyfg536+MU7m4C1CMk4ZznpXZzDYI1PDL2nS1hpvc5cNd7E2sJg05Fe7/7d3Fln8Cvc3bwB616auxsKl4WPghjemHrDqyDWeu1UNW5s2btPnSQ75oOdunEwWazfwgVG0kqluYCM9OIjWOGnfA2b9G4Ha63XKpvQ8perTvTifJNhi6+WMWmi7smEZf6G8MmhlyGq+NqP8GV84TLuJr7UIQVx+bDEoEpRZIz42gs40OuN4Mv8hXzelV7KX1isH+ewTWckikyVv+CfHuqVF7I16gN0VKypX6wPsE+zFPzkinolU9UH8OMGvSpnZqKsv13p/RsMun6X5x/y2LeAr8O66lsBwzBMP/wJfyGq8pgBk6IAAAAASUVORK5CYII=\",\n\t\"gender\": \"MALE\",\n\t\"age\": 12\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -490,8 +498,9 @@
 									],
 									"variable": [
 										{
-											"key": "username",
-											"value": "{{username}}"
+											"key": "email",
+											"value": "{{email}}",
+											"description": " (This can only be one of admin@bfriend.ch,moderator@bfriend.ch,passive_user@bfriend.ch,active_user@bfriend.ch,deactivated_user@bfriend.ch)"
 										},
 										{
 											"key": "password",
@@ -515,10 +524,10 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"message\": \"Wrong formatting!\"\n}"
+							"body": "{\n\t\"message\": \"Wrong formatting!\"\n}"
 						},
 						{
-							"id": "361fcca1-fd2f-47c0-86f9-bc1fb424d7b0",
+							"id": "3b6c23d8-f8ed-4a61-afc6-f98f2c671349",
 							"name": "Username is already taken",
 							"originalRequest": {
 								"method": "POST",
@@ -531,7 +540,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"123456\",\n  \"role\": [\n    \"admin\"\n  ]\n}",
+									"raw": "{\n\t\"email\": \"admin@bfriend.ch\",\n\t\"password\": \"123456\",\n\t\"role\": [\n\t\t\"admin\"\n\t],\n\t\"firstname\": \"Admin\",\n\t\"lastname\": \"Administrator\",\n\t\"hobbies\": [\n\t\t\"FOOTBALL\",\n\t\t\"FISHING\"\n\t],\n\t\"location\": \"Zürich\",\n\t\"profilepicture\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAV4AAACWBAMAAABkyf1EAAAAG1BMVEXMzMyWlpacnJyqqqrFxcWxsbGjo6O3t7e+vr6He3KoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEcElEQVR4nO2aTW/bRhCGh18ij1zKknMkbbf2UXITIEeyMhIfRaF1exQLA/JRclslRykO+rs7s7s0VwytNmhJtsA8gHZEcox9PTs7uysQgGEYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhmGYr2OWRK/ReIKI8Zt7Hb19wTcQ0uTkGh13bQupcw7gPOvdo12/5CzNtNR7xLUtNtT3CGBQ6g3InjY720pvofUec22LJPr8PhEp2OMPyI40PdwWUdronCu9yQpdPx53bQlfLKnfOVhlnDYRBXve4Ov+IZTeMgdedm0NR+xoXJeQvdJ3CvziykSukwil16W/Oe7aGjIjqc/9ib4jQlJy0uArtN4A0+cvXFvDkmUJ47sJ1Y1ATLDNVXZkNPIepQzxy1ki9fqiwbUj/I+64zxWNzyZnPuhvohJ9K70VvXBixpcu2SAHU+Xd9EKdEJDNpYP3AQr3bQSpPQ6Y6/4dl1z7ZDbArsszjA7L0g7ibB0CDcidUWVoErvIMKZh2Xs0LUzcLW6V5NfiUgNEbaYmAVL6bXl0nJRc+1S72ua/D/cTjGPlQj7eUqd7A096rYlRjdPYlhz7VIvxpVG3cemDKF+WAwLY/6XelOZKTXXzsC4xvDjjtSN6kHLhLke6PrwM8h1raf40qjrGO7H9aTEbduucjS04ZrYU/4iuS5Z2Hdt0rvCLFdmLEXcU30AGddST62o+sLcf5l6k7CP+ru4pLYqX/VFyxbm/utQbx/r22ZEbTb2f5I2kns1Y1OQR8ZyofX+TjJxj1Rz7QQVnf1QzR26Oth0ueJVYcRP6ZUPac/Rx/5M6ixO1dhSrT3Y1DpiYmx3tF4ZUdpz9LD/dSg9PXES0LB71BwcGjKROuV28lnvnv7HHJsezheBGH5+X2CfSfRbMKW+5aGs3JFjMrjGibJc0S7TJzqjHrh2hDybj9XRXNZa89Aro55XBdbW5wti2c/5WJ7jJ1RolVUn/HWpb0I58Tziup6Rx7Dm2hnbRP1GM9PW/NFmQ4PtVRVN63Wvxfmu5sowDMMwDMMwDMMwDMMwDMMwDMMwzL+CpT//F/6beoV8zb2Jmt4Qryx6lTUCsENQ75HOkhXAO3EPVgyQtKtUy3C/e+FJg17Zjnew1Xrdb9InbG4WqfUAftG+WhLwPVyfg536+MU7m4C1CMk4ZznpXZzDYI1PDL2nS1hpvc5cNd7E2sJg05Fe7/7d3Fln8Cvc3bwB616auxsKl4WPghjemHrDqyDWeu1UNW5s2btPnSQ75oOdunEwWazfwgVG0kqluYCM9OIjWOGnfA2b9G4Ha63XKpvQ8perTvTifJNhi6+WMWmi7smEZf6G8MmhlyGq+NqP8GV84TLuJr7UIQVx+bDEoEpRZIz42gs40OuN4Mv8hXzelV7KX1isH+ewTWckikyVv+CfHuqVF7I16gN0VKypX6wPsE+zFPzkinolU9UH8OMGvSpnZqKsv13p/RsMun6X5x/y2LeAr8O66lsBwzBMP/wJfyGq8pgBk6IAAAAASUVORK5CYII=\",\n\t\"gender\": \"MALE\",\n\t\"age\": 12\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -550,8 +559,9 @@
 									],
 									"variable": [
 										{
-											"key": "username",
-											"value": "{{username}}"
+											"key": "email",
+											"value": "{{email}}",
+											"description": " (This can only be one of admin@bfriend.ch,moderator@bfriend.ch,passive_user@bfriend.ch,active_user@bfriend.ch,deactivated_user@bfriend.ch)"
 										},
 										{
 											"key": "password",
@@ -575,16 +585,16 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"message\": \"Username is already taken!\"\n}"
+							"body": "{\n\t\"message\": \"E-Mail is already taken!\"\n}"
 						}
 					]
 				}
 			],
-			"id": "7a0f494a-7a11-441e-aeb8-8afb7085be20"
+			"id": "ab8e8609-b0e9-4c6b-b355-b5a941c32bc8"
 		},
 		{
 			"name": "returns a \"Hello World\" String",
-			"id": "c10e9ba6-26a1-4f32-8d6d-5b8f7eefb2dc",
+			"id": "a6a05466-3c82-4569-b897-802d2d9ae31f",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -606,8 +616,9 @@
 					],
 					"variable": [
 						{
-							"key": "username",
-							"value": "{{username}}"
+							"key": "email",
+							"value": "{{email}}",
+							"description": " (This can only be one of admin@bfriend.ch,moderator@bfriend.ch,passive_user@bfriend.ch,active_user@bfriend.ch,deactivated_user@bfriend.ch)"
 						},
 						{
 							"key": "password",
@@ -623,7 +634,7 @@
 			},
 			"response": [
 				{
-					"id": "86d3d628-f9c1-4c95-917d-1946fa8ea4cc",
+					"id": "6c18fdff-64aa-4fac-a001-f131b5edbf25",
 					"name": "the \"Hello World\" String",
 					"originalRequest": {
 						"method": "GET",
@@ -644,8 +655,9 @@
 							],
 							"variable": [
 								{
-									"key": "username",
-									"value": "{{username}}"
+									"key": "email",
+									"value": "{{email}}",
+									"description": " (This can only be one of admin@bfriend.ch,moderator@bfriend.ch,passive_user@bfriend.ch,active_user@bfriend.ch,deactivated_user@bfriend.ch)"
 								},
 								{
 									"key": "password",
@@ -696,17 +708,17 @@
 	},
 	"variable": [
 		{
-			"id": "7149499d-4270-4afb-ade2-69fdcdbfd5c7",
-			"key": "username",
-			"value": "admin",
+			"id": "fbd54c20-234a-4552-9997-f673912df036",
+			"key": "email",
+			"value": "admin@bfriend.ch",
 			"type": "any",
 			"description": {
-				"content": "",
+				"content": " (This can only be one of admin@bfriend.ch,moderator@bfriend.ch,passive_user@bfriend.ch,active_user@bfriend.ch,deactivated_user@bfriend.ch)",
 				"type": "text/plain"
 			}
 		},
 		{
-			"id": "77ff11e5-96a1-4f8a-a55b-b13cf8e78c35",
+			"id": "cf2a941b-4517-489d-b5b2-f8e18cf57460",
 			"key": "password",
 			"value": "123456",
 			"type": "any",
@@ -716,7 +728,7 @@
 			}
 		},
 		{
-			"id": "ac059449-3b9e-4746-8c09-e951c20829bd",
+			"id": "a4c9fe42-c727-4789-b87b-438d54850bed",
 			"key": "role",
 			"value": "admin",
 			"type": "any",
@@ -726,7 +738,7 @@
 			}
 		},
 		{
-			"id": "5b64a230-d525-40ac-a5cf-4ad919fcda16",
+			"id": "908b104c-9752-4dbc-90b0-523c0fd121f4",
 			"key": "baseUrl",
 			"value": "http://localhost:8080",
 			"type": "string"
