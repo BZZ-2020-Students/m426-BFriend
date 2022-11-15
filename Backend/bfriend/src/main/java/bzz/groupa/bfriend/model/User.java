@@ -74,7 +74,6 @@ public class User {
     @Column(length = MAX_BASE64_LENGTH)
     private String profilePicture;
 
-    @Size(max = MAX_AGE)
     private int age;
 
     private Date lastLogin;

@@ -1,11 +1,11 @@
 package bzz.groupa.bfriend.security.payload.request;
 
+import bzz.groupa.bfriend.enums.Gender;
+import bzz.groupa.bfriend.enums.Hobby;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Set;
 
 import static bzz.groupa.bfriend.util.GlobalVars.*;
@@ -30,10 +30,10 @@ public class SignupRequest {
 
     @NotBlank
     @Size(max = MAX_NAME_LENGTH)
-    private String Lastname;
+    private String lastname;
 
-    @NotBlank
-    private Set<String> hobbys;
+    @NotNull
+    private Set<Hobby> hobbies;
 
     @NotBlank
     @Size(max = MAX_LOCATION_LENGTH)
@@ -42,11 +42,11 @@ public class SignupRequest {
     @NotBlank
     private String profilepicture;
 
-    @NotBlank
-    private String gender;
+    @NotNull
+    private Gender gender;
 
-    @NotBlank
-    @Size(max = MAX_AGE)
+    @NotNull
+    @Max(MAX_AGE)
     private int age;
 
 
