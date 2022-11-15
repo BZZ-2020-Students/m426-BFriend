@@ -62,7 +62,7 @@ public class AuthController {
         }
 
         Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+                .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
@@ -76,7 +76,7 @@ public class AuthController {
             return getResponseEntityWithCookie(userDetails);
         }
 
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("Invalid username or password"));
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("Invalid E-Mail or Password"));
     }
 
     @PostMapping("/register")
@@ -86,7 +86,7 @@ public class AuthController {
         }
 
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(new MessageResponse("Username is already taken!"));
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new MessageResponse("E-Mail is already taken!"));
         }
 
         // Create new user's account
