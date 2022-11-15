@@ -94,7 +94,6 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
-							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -212,7 +211,6 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
-							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -273,7 +271,6 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "json",
-							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -334,7 +331,6 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
-							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -366,7 +362,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"123456\",\n  \"role\": [\n    \"admin\"\n  ]\n}",
+							"raw": "{\n  \"email\": \"admin1@test.ch\",\n  \"password\": \"123456\",\n  \"role\": [],\n  \"firstname\" : \"robert\",\n  \"lastname\" : \"Franz\",\n  \"location\" : \"Zuerich\",\n  \"gender\" : \"MALE\",\n  \"hobbies\" : [\n      \"FOOTBALL\",\n      \"BASKETBALL\"\n  ],\n  \"age\" : 3,\n  \"profilepicture\" : \"test\"\n\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -452,7 +448,6 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
-							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -513,7 +508,6 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "json",
-							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -574,7 +568,6 @@
 							"status": "Conflict",
 							"code": 409,
 							"_postman_previewlanguage": "json",
-							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -669,7 +662,6 @@
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "text",
-					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",

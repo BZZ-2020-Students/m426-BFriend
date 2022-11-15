@@ -126,9 +126,30 @@ paths:
                     application/json:
                         schema:
                             properties:
-                                username:
-                                    description: the username of the user that wants to register
+                                email:
+                                    description: the email of the user that wants to log in
                                     type: string
+                                firstname:
+                                    description: the firstname of the user that wants to log in
+                                    type: string
+                                lastname:
+                                    description: the lastname of the user that wants to log in
+                                    type: string
+                                hobbies:
+                                    description: the hobbies of the user that wants to log in
+                                    type: object
+                                location:
+                                    description: the location of the user that wants to log in
+                                    type: string
+                                profilepicture:
+                                    description: the profilepicture of the user that wants to log in
+                                    type: string
+                                gender:
+                                    description: the gender of the user that wants to log in
+                                    type: string
+                                age:
+                                    description: the age of the user that wants to log in
+                                    type: integer
                                 password:
                                     description: the password of the user that wants to log in
                                     type: string
@@ -139,7 +160,14 @@ paths:
                                     items:
                                         type: string
                             required:
-                                - username
+                                - email
+                                - firstname
+                                - lastname
+                                - hobbies
+                                - location
+                                - profilepicture
+                                - gender
+                                - age
                                 - password
                                 - role
                         examples:
