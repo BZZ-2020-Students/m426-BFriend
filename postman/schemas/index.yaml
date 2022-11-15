@@ -4,8 +4,14 @@ servers:
     - url: http://localhost:8080
       description: Development server
       variables:
-        username:
-            default: admin
+        email:
+            default: admin@bfriend.ch
+            enum:
+                - admin@bfriend.ch
+                - moderator@bfriend.ch
+                - passive_user@bfriend.ch
+                - active_user@bfriend.ch
+                - deactivated_user@bfriend.ch
         password:
             default: '123456'
         role:

@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "2e5180f5-598a-4d63-937d-6984cfaaf866",
+		"_postman_id": "59396f0f-f53f-42f6-b350-219d1ed72564",
 		"name": "generated",
 		"description": "Find people with the same hobbies and interests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_uid": "19464364-2e5180f5-598a-4d63-937d-6984cfaaf866"
+		"_uid": "19464364-59396f0f-f53f-42f6-b350-219d1ed72564"
 	},
 	"item": [
 		{
@@ -12,7 +12,7 @@
 			"item": [
 				{
 					"name": "logs out a logged in user",
-					"id": "ebb652d7-9357-4a88-8d91-01a8f5f57fd3",
+					"id": "aa8ce550-c2a4-43cf-a08b-2bd3fdd3fe3c",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -53,7 +53,7 @@
 					},
 					"response": [
 						{
-							"id": "8ebd6f86-c227-4928-b157-01f443dcc166",
+							"id": "a49025a3-87ee-4150-ba6d-9b7435c37b7b",
 							"name": "user has been successfully logged out",
 							"originalRequest": {
 								"method": "POST",
@@ -94,6 +94,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -107,7 +108,7 @@
 				},
 				{
 					"name": "logs in a user, if password and username is correct",
-					"id": "b5dbc751-a3de-49e9-91f2-e611f65e2649",
+					"id": "38cb397c-b1ac-4a71-874e-4e8a740c063f",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -161,7 +162,7 @@
 					},
 					"response": [
 						{
-							"id": "30a8e56c-a570-4b4f-a5bc-c8ba89e70cba",
+							"id": "17de16ab-bb69-4858-af1d-d01de2a9e8e8",
 							"name": "credentials are correct, user is logged in",
 							"originalRequest": {
 								"method": "POST",
@@ -211,6 +212,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -221,7 +223,7 @@
 							"body": "{\n  \"roles\": [\n    \"ADMIN\"\n  ],\n  \"id\": 1,\n  \"username\": \"admin\"\n}"
 						},
 						{
-							"id": "bf7ee9ca-227c-4cba-8233-8eaf746ee260",
+							"id": "c41c3605-ab60-4424-b4fc-bf715c86cf3b",
 							"name": "wrong formatting (e.g. password missing)",
 							"originalRequest": {
 								"method": "POST",
@@ -271,6 +273,7 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -281,7 +284,7 @@
 							"body": "{\n  \"message\": \"Wrong formatting!\"\n}"
 						},
 						{
-							"id": "d6d184b3-719c-4cf2-b084-2cb41b335597",
+							"id": "de58ac2a-b12a-4dac-a9e7-acef99ccd526",
 							"name": "wrong username/password",
 							"originalRequest": {
 								"method": "POST",
@@ -331,6 +334,7 @@
 							"status": "Unauthorized",
 							"code": 401,
 							"_postman_previewlanguage": "text",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -344,7 +348,7 @@
 				},
 				{
 					"name": "registers a user",
-					"id": "ddfc706c-698f-4ffe-8c37-6485525eba85",
+					"id": "aa3b0342-3848-43b1-88b7-86d6f1fa7c59",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -398,7 +402,7 @@
 					},
 					"response": [
 						{
-							"id": "18703998-11c1-467a-af1e-f4b61b826815",
+							"id": "aa69ec6e-cbea-4e19-a7fc-199947f7230a",
 							"name": "user has been successfully registered",
 							"originalRequest": {
 								"method": "POST",
@@ -448,6 +452,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -458,7 +463,7 @@
 							"body": "{\n  \"roles\": [\n    \"ADMIN\"\n  ],\n  \"id\": 1,\n  \"username\": \"admin\"\n}"
 						},
 						{
-							"id": "79d67d8f-79fc-4d6c-9bf4-55467db7146f",
+							"id": "708464e6-8731-4a3c-b42b-2b3357d01712",
 							"name": "wrong formatting (e.g. password missing)",
 							"originalRequest": {
 								"method": "POST",
@@ -508,6 +513,7 @@
 							"status": "Bad Request",
 							"code": 400,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -518,7 +524,7 @@
 							"body": "{\n  \"message\": \"Wrong formatting!\"\n}"
 						},
 						{
-							"id": "ca0735af-3fb0-43f1-b1ec-248d73f8b43e",
+							"id": "361fcca1-fd2f-47c0-86f9-bc1fb424d7b0",
 							"name": "Username is already taken",
 							"originalRequest": {
 								"method": "POST",
@@ -568,6 +574,7 @@
 							"status": "Conflict",
 							"code": 409,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -580,11 +587,11 @@
 					]
 				}
 			],
-			"id": "424bbd15-dd14-4415-b882-a31ba4ddb632"
+			"id": "7a0f494a-7a11-441e-aeb8-8afb7085be20"
 		},
 		{
 			"name": "returns a \"Hello World\" String",
-			"id": "793d5fd4-2c37-41ca-bb29-364ec7dfad6f",
+			"id": "c10e9ba6-26a1-4f32-8d6d-5b8f7eefb2dc",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -623,7 +630,7 @@
 			},
 			"response": [
 				{
-					"id": "5a3d5176-e239-4991-9683-c21b6d263685",
+					"id": "86d3d628-f9c1-4c95-917d-1946fa8ea4cc",
 					"name": "the \"Hello World\" String",
 					"originalRequest": {
 						"method": "GET",
@@ -662,6 +669,7 @@
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "text",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
