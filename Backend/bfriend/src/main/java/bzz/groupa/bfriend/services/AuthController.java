@@ -88,10 +88,18 @@ public class AuthController {
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(new MessageResponse("Username is already taken!"));
         }
+
         // Create new user's account
         User user = User.builder()
                 .email(signUpRequest.getEmail())
                 .password(encoder.encode(signUpRequest.getPassword()))
+                .firstname(signUpRequest.getFirstname())
+                .lastName(signUpRequest.getLastname())
+                .location(signUpRequest.getLocation())
+                .gender(signUpRequest.getGender())
+                .hobbies(signUpRequest.getHobbies())
+                .age(signUpRequest.getAge())
+                .profilePicture(signUpRequest.getProfilepicture())
                 .build();
         Set<String> strRoles = signUpRequest.getRole();
         Set<UserRole> roles = new HashSet<>();
