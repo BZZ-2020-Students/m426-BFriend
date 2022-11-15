@@ -85,46 +85,28 @@ public class AuthController {
             return ResponseEntity.badRequest().body(new MessageResponse("Wrong formatting!"));
         }
 
-        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+        if (userRepository.existsByUsername(signUpRequest.getEmail())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(new MessageResponse("Username is already taken!"));
         }
         // Create new user's account
-        User user = new User(signUpRequest.getUsername(),
-                encoder.encode(signUpRequest.getPassword()));
+        User user = User.builder()
+                .username(signUpRequest.getEmail())
+                .password(encoder.encode(signUpRequest.getPassword()))
+                .build();
         Set<String> strRoles = signUpRequest.getRole();
         Set<UserRole> roles = new HashSet<>();
+
         if (strRoles == null) {
             UserRole userRole = roleRepository.findByName(EnumUserRole.PASSIVE_USER)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             roles.add(userRole);
         } else {
             strRoles.forEach(role -> {
-                switch (role.toLowerCase()) {
-                    case "admin" -> {
-                        UserRole adminRole = roleRepository.findByName(EnumUserRole.ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(adminRole);
-                    }
-                    case "active_user" -> {
-                        UserRole userRole = roleRepository.findByName(EnumUserRole.ACTIVE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(userRole);
-                    }
-                    case "deactivated_user" -> {
-                        UserRole userRole = roleRepository.findByName(EnumUserRole.DEACTIVATED_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(userRole);
-                    }
-                    case "moderator" -> {
-                        UserRole userRole = roleRepository.findByName(EnumUserRole.MODERATOR)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(userRole);
-                    }
-                    default -> {
-                        UserRole userRole = roleRepository.findByName(EnumUserRole.PASSIVE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(userRole);
-                    }
+                var myRole = EnumUserRole.getRoleByString(role);
+                if (myRole != null) {
+                    UserRole userRole = roleRepository.findByName(myRole)
+                            .orElseThrow(() -> new RuntimeException("Error: Role '" + role + "' is not found."));
+                    roles.add(userRole);
                 }
             });
         }
@@ -133,7 +115,7 @@ public class AuthController {
         userRepository.save(user);
 
         Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(signUpRequest.getUsername(), signUpRequest.getPassword()));
+                .authenticate(new UsernamePasswordAuthenticationToken(signUpRequest.getEmail(), signUpRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         return getResponseEntityWithCookie(userDetails);
