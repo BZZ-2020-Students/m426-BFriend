@@ -119,6 +119,8 @@ public class AuthController {
             });
         }
         user.setRoles(roles);
+        user.setAccountCreated(new Date());
+        user.setLastLogin(new Date());
 
         userRepository.save(user);
 
