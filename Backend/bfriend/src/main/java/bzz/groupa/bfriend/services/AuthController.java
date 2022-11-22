@@ -23,10 +23,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -53,6 +55,27 @@ public class AuthController {
         ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
                 .body(new MessageResponse("You have been logged out successfully!"));
+    }
+
+    @GetMapping("/infos")
+    public ResponseEntity<?> checkIfLoggedIn(HttpServletRequest request) {
+        String jwt = jwtUtils.getJwtFromCookies(request);
+        boolean valid = jwtUtils.validateJwtToken(jwt);
+        if (valid) {
+            String username = jwtUtils.getUserNameFromJwtToken(jwt);
+            try {
+                User user = userRepository.findByEmail(username).orElseThrow(() -> new RuntimeException("Error: User not found."));
+
+                return ResponseEntity.ok()
+                        .body(new UserInfoResponse(user.getId(),
+                                user.getEmail(),
+                                user.getRoles()));
+            } catch (RuntimeException e) {
+                return ResponseEntity.badRequest().body(new MessageResponse("Error: " + e.getMessage()));
+            }
+        } else {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Invalid JWT"));
+        }
     }
 
     @PostMapping("/login")
