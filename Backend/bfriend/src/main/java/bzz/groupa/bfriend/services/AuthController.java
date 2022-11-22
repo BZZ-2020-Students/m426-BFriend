@@ -60,7 +60,6 @@ public class AuthController {
     @GetMapping("/infos")
     public ResponseEntity<?> checkIfLoggedIn(HttpServletRequest request) {
         String jwt = jwtUtils.getJwtFromCookies(request);
-        System.out.println("jwt: " + jwt);
         boolean valid = jwtUtils.validateJwtToken(jwt);
         if (valid) {
             String username = jwtUtils.getUserNameFromJwtToken(jwt);
