@@ -18,10 +18,10 @@
 <form>
   <mat-card>
     <mat-card-content>
-      <form id="Login">
+      <form formGroup="login" ngSubmit="logindata(login)"id="Login">
         <h2>Log In</h2>
         <mat-form-field>
-          <input matInput type="email" placeholder="Email" class="form-control" name="email">
+          <input matInput type="email" placeholder="Email" formControlName="email" name="email">
           <mat-error>
             Please provide a valid email address
           </mat-error>
@@ -29,7 +29,7 @@
           </span>
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="password" placeholder="Password" class="form-control" name="password">
+          <input matInput type="password" placeholder="Password" formControlName="password" name="password">
           <mat-error>
             Please provide a valid password
           </mat-error>
@@ -41,4 +41,6 @@
 </form>
 </body>
 </html>
+
+<router-outlet></router-outlet>
 
