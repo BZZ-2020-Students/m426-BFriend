@@ -69,6 +69,8 @@ public class AuthController {
                 return ResponseEntity.ok()
                         .body(new UserInfoResponse(user.getId(),
                                 user.getEmail(),
+                                user.getFirstname(),
+                                user.getLastName(),
                                 user.getRoles()));
             } catch (RuntimeException e) {
                 return ResponseEntity.badRequest().body(new MessageResponse("Error: " + e.getMessage()));
@@ -96,7 +98,7 @@ public class AuthController {
 
             userRepository.save(user);
 
-            return getResponseEntityWithCookie(userDetails);
+            return getResponseEntityWithCookie(userDetails, user);
         }
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("Invalid E-Mail or Password"));
@@ -151,17 +153,16 @@ public class AuthController {
                 .authenticate(new UsernamePasswordAuthenticationToken(signUpRequest.getEmail(), signUpRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        return getResponseEntityWithCookie(userDetails);
+        return getResponseEntityWithCookie(userDetails, user);
     }
 
-    private ResponseEntity<?> getResponseEntityWithCookie(UserDetailsImpl userDetails) {
+    private ResponseEntity<?> getResponseEntityWithCookie(UserDetailsImpl userDetails, User user) {
         ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
         List<String> userRoles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
-                .body(new UserInfoResponse(userDetails.getId(),
-                        userDetails.getUsername(),
-                        userRoles));
+                .body(new UserInfoResponse(userRoles, userDetails.getId(),
+                        userDetails.getUsername(), user.getFirstname(), user.getLastName()));
     }
 }
