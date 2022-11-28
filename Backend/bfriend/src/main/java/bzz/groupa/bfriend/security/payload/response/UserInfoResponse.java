@@ -18,9 +18,7 @@ public class UserInfoResponse {
     private final List<String> roles;
     private Long id;
     private String email;
-
     private String firstName;
-
     private String lastName;
 
     public UserInfoResponse() {
