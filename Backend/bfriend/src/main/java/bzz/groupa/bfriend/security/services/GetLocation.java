@@ -1,6 +1,7 @@
 package bzz.groupa.bfriend.security.services;
 
 import bzz.groupa.bfriend.util.GlobalVars;
+import bzz.groupa.bfriend.util.annotation.WikiDataIdValidator;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -28,6 +29,37 @@ public class GetLocation {
 
         Request request = new Request.Builder()
                 .url("https://wft-geo-db.p.rapidapi.com/v1/geo/cities?countryIds=" + GlobalVars.COUNTRY_IDS + "&namePrefix=" + city)
+                .get()
+                .addHeader("X-RapidAPI-Key", key)
+                .addHeader("X-RapidAPI-Host", host)
+                .build();
+
+        try {
+            Response response = client.newCall(request).execute();
+            return ResponseEntity.ok().body(response.body().string());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @GetMapping(path = "/near/{city}/{radius}", produces = "application/json")
+    public ResponseEntity<?> findNearbyCities(@PathVariable String city, @PathVariable int radius) {
+        if (radius > 100) {
+            radius = 100;
+        }
+
+        if (radius < 1) {
+            radius = 1;
+        }
+
+        if (!WikiDataIdValidator.isValid(city)) {
+            throw new RuntimeException("Invalid WikiDataID");
+        }
+
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url("https://wft-geo-db.p.rapidapi.com/v1/geo/cities/" + city + "/nearbyCities?radius=" + radius + "&distanceUnit=KM&countryIds=" + GlobalVars.COUNTRY_IDS)
                 .get()
                 .addHeader("X-RapidAPI-Key", key)
                 .addHeader("X-RapidAPI-Host", host)

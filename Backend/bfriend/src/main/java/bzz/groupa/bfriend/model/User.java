@@ -2,6 +2,7 @@ package bzz.groupa.bfriend.model;
 
 import bzz.groupa.bfriend.enums.Gender;
 import bzz.groupa.bfriend.enums.Hobby;
+import bzz.groupa.bfriend.util.annotation.LocationString;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -61,6 +62,7 @@ public class User {
     @NotNull
     @Size(max = MAX_LOCATION_LENGTH)
     @Column(length = MAX_LOCATION_LENGTH)
+    @LocationString
     private String location;
 
     // list of hobbies
