@@ -118,7 +118,6 @@ paths:
                                         {
                                             "message": "Wrong formatting!"
                                         }
-
     /api/auth/register:
         post:
             summary: registers a user
@@ -236,6 +235,52 @@ paths:
                                         {
                                             "message": "Wrong formatting!"
                                         }
+    /api/auth/infos:
+        get:
+            summary: returns user infos, if logged in
+            responses:
+                "200":
+                    description: user has been successfully registered
+                    content:
+                        application/json:
+                            examples:
+                                logged_in:
+                                    value:
+                                        {
+                                            "roles": [
+                                                "ADMIN"
+                                            ],
+                                            "id": 1,
+                                            "email": "admin"
+                                        }
+    /api/hobby/all:
+        get:
+            summary: Gets a list of all hobbies
+            responses:
+                "200":
+                    description: hobbies have been successfully returned
+                    content:
+                            application/json:
+                                examples:
+                                    successful_hobby_return:
+                                        value:
+                                            {
+                                                [
+                                                    "Football",
+                                                    "Basketball",
+                                                    "Handball",
+                                                    "Volleyball",
+                                                    "Tennis",
+                                                    "Swimming",
+                                                    "Running",
+                                                    "Cycling",
+                                                    "Skiing",
+                                                    "Snowboarding",
+                                                    "Skating",
+                                                    "Fishing"
+                                                ]
+                                            }
+
 
 components:
     securitySchemes:
