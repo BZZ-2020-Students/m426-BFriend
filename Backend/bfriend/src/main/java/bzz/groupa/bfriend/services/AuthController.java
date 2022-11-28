@@ -23,10 +23,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -55,6 +57,29 @@ public class AuthController {
                 .body(new MessageResponse("You have been logged out successfully!"));
     }
 
+    @GetMapping("/infos")
+    public ResponseEntity<?> checkIfLoggedIn(HttpServletRequest request) {
+        String jwt = jwtUtils.getJwtFromCookies(request);
+        boolean valid = jwtUtils.validateJwtToken(jwt);
+        if (valid) {
+            String username = jwtUtils.getUserNameFromJwtToken(jwt);
+            try {
+                User user = userRepository.findByEmail(username).orElseThrow(() -> new RuntimeException("Error: User not found."));
+
+                return ResponseEntity.ok()
+                        .body(new UserInfoResponse(user.getId(),
+                                user.getEmail(),
+                                user.getFirstname(),
+                                user.getLastName(),
+                                user.getRoles()));
+            } catch (RuntimeException e) {
+                return ResponseEntity.badRequest().body(new MessageResponse("Error: " + e.getMessage()));
+            }
+        } else {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Invalid JWT"));
+        }
+    }
+
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result) {
         if (result.hasErrors()) {
@@ -73,7 +98,7 @@ public class AuthController {
 
             userRepository.save(user);
 
-            return getResponseEntityWithCookie(userDetails);
+            return getResponseEntityWithCookie(userDetails, user);
         }
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("Invalid E-Mail or Password"));
@@ -128,17 +153,16 @@ public class AuthController {
                 .authenticate(new UsernamePasswordAuthenticationToken(signUpRequest.getEmail(), signUpRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        return getResponseEntityWithCookie(userDetails);
+        return getResponseEntityWithCookie(userDetails, user);
     }
 
-    private ResponseEntity<?> getResponseEntityWithCookie(UserDetailsImpl userDetails) {
+    private ResponseEntity<?> getResponseEntityWithCookie(UserDetailsImpl userDetails, User user) {
         ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
         List<String> userRoles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
-                .body(new UserInfoResponse(userDetails.getId(),
-                        userDetails.getUsername(),
-                        userRoles));
+                .body(new UserInfoResponse(userRoles, userDetails.getId(),
+                        userDetails.getUsername(), user.getFirstname(), user.getLastName()));
     }
 }
