@@ -1,13 +1,44 @@
-<h5><u><i>Login Form using Angular material!!</i></u></h5>
-<form class="example-form">
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>User Name</mat-label>
-    <input matInput placeholder="Enter your name" name="usename">
-  </mat-form-field>
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Password</mat-label>
-    <input matInput placeholder="Enter your password" value="" name="password" type="password">
-  </mat-form-field>
-  <button mat-raised-button color="primary" >Submit</button>
-  <span> <button mat-button color="accent">Login success !!</button></span>
+<style>
+  mat-card {
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
+    margin-top: 15%;
+  }
+
+  mat-form-field {
+    display: block;
+  }
+
+</style>
+<html>
+<head>
+</head>
+<body>
+<form>
+  <mat-card>
+    <mat-card-content>
+      <form id="Login">
+        <h2>Log In</h2>
+        <mat-form-field>
+          <input matInput type="email" placeholder="Email" class="form-control" name="email">
+          <mat-error>
+            Please provide a valid email address
+          </mat-error>
+          <span style="color:red" ng-show="email.$dirty && email.$invalid">
+          </span>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" class="form-control" name="password">
+          <mat-error>
+            Please provide a valid password
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Login</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </form>
+</body>
+</html>
+

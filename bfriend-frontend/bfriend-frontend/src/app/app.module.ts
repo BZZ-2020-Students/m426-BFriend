@@ -10,27 +10,56 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationComponent } from './registration/registration.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
-import {MatInputModule} from "@angular/material/input";
+import {FormsModule} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import {
+  MatCardModule, MatDialogModule,MatTableModule,
+  MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule
+} from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
     RegistrationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    FormsModule,
+    CommonModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatDialogModule,
+    MatTableModule,
+    MatMenuModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent],
   exports: [
     MatButtonModule,
     MatInputModule,
-  ]
+    CommonModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatDialogModule,
+    MatTableModule,
+    MatMenuModule,
+    MatIconModule,
+    MatProgressSpinnerModule  ]
 })
 export class AppModule { }
