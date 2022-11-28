@@ -604,6 +604,11 @@
 									{
 										"key": "Accept",
 										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "bfriend=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBiZnJpZW5kLmNoIiwiaWF0IjoxNjY5NjM4NjcxLCJleHAiOjE2Njk3MjUwNzF9.04OvAmlLCvE6-suH41kBZrdTq2ijIw_MB2yaWFWPdRkqC4kk8Us1wBo0dX6NozVtrUmWgp2v7ihN1JUeCGnDXQ; Path=/; Secure; HttpOnly; Expires=Tue, 29 Nov 2022 12:31:11 GMT;",
+										"type": "text"
 									}
 								],
 								"url": {
