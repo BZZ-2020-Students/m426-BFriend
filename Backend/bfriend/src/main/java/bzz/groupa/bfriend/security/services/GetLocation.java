@@ -72,4 +72,27 @@ public class GetLocation {
             throw new RuntimeException(e);
         }
     }
+
+    @GetMapping(path = "/distance/{city1}/{city2}", produces = "application/json")
+    public ResponseEntity<?> findDistanceBetweenCities(@PathVariable String city1, @PathVariable String city2) {
+        if (!WikiDataIdValidator.isValid(city1) || !WikiDataIdValidator.isValid(city2)) {
+            throw new RuntimeException("Invalid WikiDataID");
+        }
+
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url("https://wft-geo-db.p.rapidapi.com/v1/geo/cities/" + city1 + "/distance?distanceUnit=KM&toCityId=" + city2)
+                .get()
+                .addHeader("X-RapidAPI-Key", key)
+                .addHeader("X-RapidAPI-Host", host)
+                .build();
+
+        try {
+            Response response = client.newCall(request).execute();
+            return ResponseEntity.ok().body(response.body().string());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
