@@ -1,4 +1,4 @@
-package bzz.groupa.bfriend.security.services;
+package bzz.groupa.bfriend.services;
 
 import bzz.groupa.bfriend.enums.Hobby;
 import org.springframework.http.ResponseEntity;

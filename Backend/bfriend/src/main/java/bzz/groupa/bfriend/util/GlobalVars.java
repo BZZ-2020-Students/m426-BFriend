@@ -9,4 +9,6 @@ public class GlobalVars {
     public final static int MAX_NAME_LENGTH = 64;
     public final static int MIN_NAME_LENGTH = 1;
     public final static int MAX_BASE64_LENGTH = 1000000;
+
+    public final static String COUNTRY_IDS = "CH";
 }
