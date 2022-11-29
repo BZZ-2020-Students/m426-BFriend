@@ -13,23 +13,25 @@ import {MatSelectModule} from "@angular/material/select";
 import {FormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import {
   MatCardModule, MatDialogModule,MatTableModule,
   MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule
 } from '@angular/material';
+import {HomeServiceService} from "./home/home-service.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    HomeServiceService
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
     FormsModule,
@@ -42,8 +44,10 @@ import {
     MatTableModule,
     MatMenuModule,
     MatIconModule,
+    MatFormFieldModule,
     MatProgressSpinnerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
 
   ],
   providers: [],
