@@ -10,4 +10,9 @@ import lombok.*;
 public class City {
     private String wikiDataId;
     private String name;
+
+    @Override
+    public String toString() {
+        return wikiDataId + ";" + name;
+    }
 }

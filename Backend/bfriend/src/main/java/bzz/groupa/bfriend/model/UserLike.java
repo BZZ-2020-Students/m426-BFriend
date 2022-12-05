@@ -1,10 +1,7 @@
 package bzz.groupa.bfriend.model;
 
 import bzz.groupa.bfriend.enums.LikeState;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
@@ -14,8 +11,9 @@ import javax.persistence.*;
 @Builder
 @EnableAutoConfiguration
 @AllArgsConstructor
-@Entity
+@NoArgsConstructor
 @Table(name = "user_likes")
+@Entity
 public class UserLike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,3 +30,6 @@ public class UserLike {
     @Enumerated(EnumType.STRING)
     private LikeState likeState;
 }
+
+
+
