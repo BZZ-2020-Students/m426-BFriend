@@ -76,6 +76,10 @@ public class User {
     @Column(length = MAX_BASE64_LENGTH)
     private String profilePicture;
 
+    // all the users that this user likes or dislikes
+    @OneToMany(mappedBy = "user")
+    private Set<UserLike> userLikes;
+
     private int age;
 
     private Date lastLogin;
