@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
 
   firstname = '';
   lastname = '';
+  profilepicture = '';
 
   constructor(private homeService: HomeService, private router: Router) {
     let user: User;
@@ -20,9 +21,11 @@ export class HomeComponent implements OnInit {
       .pipe()
       .subscribe({
         next: data => {
+          console.log(data);
           user = data;
           this.firstname = user.firstName;
           this.lastname = user.lastName;
+          this.profilepicture = user.profilepicture;
         },
         error: () => {
           this.router.navigate(['/']);
