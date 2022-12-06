@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HomeService} from "./home.service";
-import {catchError, of} from "rxjs";
+import {User} from "./User";
 
 @Component({
   selector: 'app-home',
@@ -9,14 +9,28 @@ import {catchError, of} from "rxjs";
 })
 export class HomeComponent implements OnInit {
 
-  userName = 'Alexandra';
-
-  errorMsg: string | undefined;
-  error = "404"
+  userName = '';
+  errorMsg: string = '';
 
   constructor(private homeService: HomeService) {
+    let user: User;
     this.homeService
-      .getUser();
+      .getUser()
+      .pipe()
+      .subscribe({
+        next: data => {
+          user = data;
+          this.userName = user.firstName;
+          console.log(user);
+        },
+        error: error => {
+          this.errorMsg = error.message;
+          console.log(error);
+        },
+        complete: () => {
+          console.log('complete');
+        }
+      });
   }
 
   ngOnInit(): void {

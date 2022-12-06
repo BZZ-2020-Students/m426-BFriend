@@ -24,23 +24,7 @@ export class HomeService implements OnInit {
     headers = headers
       .set('Content-Type', 'application/json; charset=utf-8')
       .set('Accept', 'application/json');
-    this.http
-      .get('http://localhost:8080/api/auth/infos', {headers, withCredentials: true})
-      .pipe()
-      .subscribe({
-        next: data => {
-          console.log("data", data);
-        },
-        error: error => {
-          this.errorMsg = error.message;
-          console.log(error);
-        },
-        complete: () => {
-          console.log('complete');
-        }
-      });
-
-    return {} as Observable<User>;
+    return this.http.get<User>('http://localhost:8080/api/auth/infos', {headers, withCredentials: true});
   }
 
   private getServerErrorMessage(error: HttpErrorResponse): string {
