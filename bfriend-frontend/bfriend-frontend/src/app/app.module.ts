@@ -26,7 +26,6 @@ import {HomeServiceService} from "./home/home-service.service";
     AppComponent,
     HomeComponent,
     RegistrationComponent,
-    HomeServiceService
   ],
   imports: [
     BrowserModule,
