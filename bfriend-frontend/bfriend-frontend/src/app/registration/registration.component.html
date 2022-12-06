@@ -16,12 +16,15 @@
     <mat-label>Password</mat-label>
     <input matInput id="password" type="password" formControlName="password">
   </mat-form-field>
+  <ng-multiselect-dropdown #location_selection [ngModelOptions]="{standalone: true}"
+                           [settings]="dropdownSettingsLocation"
+                           [(ngModel)]="selectedLocation"
+                           (onFilterChange)="getNewLocationData($event)"
+                           placeholder="Select your location"
+  ></ng-multiselect-dropdown>
   <ng-multiselect-dropdown #hobby_selection [ngModelOptions]="{standalone: true}"
-                           [settings]="dropdownSettings"
-                           [data]="dropdownList"
-                           [(ngModel)]="selectedItems"
-                           (onSelect)="onItemSelect($event)"
-                           (onSelectAll)="onSelectAll($event)"
+                           [settings]="dropdownSettingsHobbies"
+                           [(ngModel)]="selectedHobbies"
                            placeholder="Select your hobbies"
   ></ng-multiselect-dropdown>
   <button mat-raised-button color="primary" type="submit">Register</button>

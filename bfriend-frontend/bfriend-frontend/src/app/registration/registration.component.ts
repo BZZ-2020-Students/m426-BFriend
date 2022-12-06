@@ -1,7 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {RegistrationService} from "./service/registration.service";
+import {MyLocation, RegistrationService} from "./service/registration.service";
 
+interface DropDownItem {
+  item_id: string;
+  item_text: string;
+}
 
 @Component({
   selector: 'app-registration',
@@ -9,8 +13,6 @@ import {RegistrationService} from "./service/registration.service";
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  // hobbies = new FormControl('');
-  hobbiesList: Array<string> = [];
   registerForm: FormGroup = new FormGroup({
       firstName: new FormControl(''),
       lastName: new FormControl(''),
@@ -23,17 +25,21 @@ export class RegistrationComponent implements OnInit {
     }
   );
   @ViewChild('hobby_selection') hobbySelection: any;
-  dropdownList: Array<any> = [];
-  selectedItems = [];
-  dropdownSettings = {};
+  selectedHobbies = [];
+  dropdownSettingsHobbies = {};
 
+  @ViewChild('location_selection') locationSelection: any;
+  selectedLocation = [];
+  dropdownSettingsLocation = {};
+  locationQueryInterval: any;
 
   constructor(private registrationService: RegistrationService) {
   }
 
   onSubmit() {
     console.log(this.registerForm.value);
-    console.log(this.selectedItems);
+    console.log(this.selectedHobbies);
+    console.log(this.selectedLocation);
   }
 
   ngOnInit(): void {
@@ -43,7 +49,7 @@ export class RegistrationComponent implements OnInit {
       }
     });
 
-    this.dropdownSettings = {
+    this.dropdownSettingsHobbies = {
       singleSelection: false,
       idField: 'item_id',
       textField: 'item_text',
@@ -54,22 +60,35 @@ export class RegistrationComponent implements OnInit {
       noDataAvailablePlaceholderText: 'No Data Available',
       allowRemoteDataSearch: false,
     }
+
+    this.dropdownSettingsLocation = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      allowSearchFilter: true,
+      searchPlaceholderText: 'Search for location',
+      noDataAvailablePlaceholderText: 'No Data Available',
+      allowRemoteDataSearch: true,
+    }
   }
 
-  onItemSelect(item: any) {
-    console.log(item);
+  getNewLocationData(event: any) {
+    clearTimeout(this.locationQueryInterval);
+    if (event.length > 0) {
+      this.locationQueryInterval = setTimeout(() => {
+        console.log("lets go", event)
+        this.registrationService.getLocations(event).subscribe({
+          next: data => {
+            let locations: DropDownItem[] = [];
+            data.data.forEach((location: MyLocation) => {
+              locations.push({item_id: location.wikiDataId, item_text: location.name});
+            });
+            this.locationSelection.data = locations;
+          }
+        });
+      }, 500);
+    }
   }
-
-  onSelectAll(items: any) {
-    console.log(items);
-  }
-
-  onDeSelectAll(items: any) {
-    console.log(items);
-  }
-
-  onDeSelect(item: any) {
-    console.log(item);
-  }
-
 }
