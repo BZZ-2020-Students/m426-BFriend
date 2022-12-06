@@ -1,18 +1,16 @@
 import {Injectable, OnInit} from '@angular/core';
-import * as http from "http";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import { catchError, throwError } from 'rxjs';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 import {User} from "./User";
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class HomeService implements OnInit{
+export class HomeService implements OnInit {
 
   userName = 'Alexandra';
-  userObject: User | any;
+  userObject: User | undefined;
   errorMsg: string | undefined;
 
   constructor(private http: HttpClient) {
@@ -21,19 +19,24 @@ export class HomeService implements OnInit{
   ngOnInit(): void {
   }
 
-  getUsers(): Observable<User> {
-    return this.http
+  getUser(): Observable<User> {
+    this.http
       .get('http://localhost:8080/api/auth/infos')
-      .pipe(
-        catchError(error => {
-          if (error.error instanceof ErrorEvent) {
-            this.errorMsg = `Error: ${error.error.message}`;
-          } else {
-            this.errorMsg = this.getServerErrorMessage(error);
-          }
-          return throwError(this.errorMsg);
-        })
-      );
+      .pipe()
+      .subscribe({
+        next: data => {
+          console.log("data", data);
+        },
+        error: error => {
+          this.errorMsg = error.message;
+          console.log(error);
+        },
+        complete: () => {
+          console.log('complete');
+        }
+      });
+
+    return {} as Observable<User>;
   }
 
   private getServerErrorMessage(error: HttpErrorResponse): string {
@@ -54,11 +57,5 @@ export class HomeService implements OnInit{
         return `Unknown Server Error: ${error.message}`;
       }
     }
-  }
-
-  getUser(): any{
-    this.http.get('http://localhost:8080/api/auth/infos').subscribe(data =>
-      this.userObject = data
-    );
   }
 }
