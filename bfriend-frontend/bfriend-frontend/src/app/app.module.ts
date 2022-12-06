@@ -13,7 +13,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {FormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 import {
   MatCardModule, MatDialogModule,MatTableModule,
@@ -47,22 +47,8 @@ import {HomeServiceService} from "./home/home-service.service";
     MatProgressSpinnerModule,
     ReactiveFormsModule,
     HttpClientModule
-
   ],
-  providers: [],
-  bootstrap: [AppComponent],
-  exports: [
-    MatButtonModule,
-    MatInputModule,
-    CommonModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatCardModule,
-    MatInputModule,
-    MatDialogModule,
-    MatTableModule,
-    MatMenuModule,
-    MatIconModule,
-    MatProgressSpinnerModule  ]
+  providers: [HttpClient],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
