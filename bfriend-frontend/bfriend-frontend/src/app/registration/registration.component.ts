@@ -37,8 +37,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("hallo")
-    let counter = 0;
     this.registrationService.getHobbies().subscribe({
       next: data => {
         this.hobbySelection.data = data;
@@ -52,10 +50,9 @@ export class RegistrationComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       allowSearchFilter: true,
-      searchPlaceholderText: 'Search',
+      searchPlaceholderText: 'Search for hobby',
       noDataAvailablePlaceholderText: 'No Data Available',
       allowRemoteDataSearch: false,
-      placeholder: 'Select Hobbies',
     }
   }
 
