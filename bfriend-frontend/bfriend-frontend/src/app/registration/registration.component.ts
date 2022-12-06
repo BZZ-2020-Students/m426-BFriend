@@ -15,7 +15,6 @@ export class RegistrationComponent implements OnInit {
       firstName: new FormControl(''),
       lastName: new FormControl(''),
       email: new FormControl(''),
-      hobbies: new FormControl(''),
       location: new FormControl(''),
       profilePicture: new FormControl(''),
       gender: new FormControl(''),
@@ -33,7 +32,8 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-
+    console.log(this.registerForm.value);
+    console.log(this.selectedItems);
   }
 
   ngOnInit(): void {

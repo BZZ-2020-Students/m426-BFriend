@@ -1,16 +1,20 @@
 <h2>Registration</h2>
 <form [formGroup]="registerForm" id="register" (ngSubmit)="onSubmit()">
   <mat-form-field>
-    <mat-label>Name</mat-label>
-    <input matInput id="name" type="text">
+    <mat-label>Firstname</mat-label>
+    <input matInput id="firstname" type="text" formControlName="firstName">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Lastname</mat-label>
+    <input matInput id="lastname" type="text" formControlName="lastName">
   </mat-form-field>
   <mat-form-field>
     <mat-label>E-Mail</mat-label>
-    <input matInput id="email" type="email">
+    <input matInput id="email" type="email" formControlName="email">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Password</mat-label>
-    <input matInput id="password" type="password">
+    <input matInput id="password" type="password" formControlName="password">
   </mat-form-field>
   <ng-multiselect-dropdown #hobby_selection [ngModelOptions]="{standalone: true}"
                            [settings]="dropdownSettings"
@@ -20,4 +24,5 @@
                            (onSelectAll)="onSelectAll($event)"
                            placeholder="Select your hobbies"
   ></ng-multiselect-dropdown>
+  <button mat-raised-button color="primary" type="submit">Register</button>
 </form>
