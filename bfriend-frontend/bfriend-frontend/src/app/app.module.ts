@@ -23,12 +23,14 @@ import {
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
+import {LoginComponent} from "./login/login.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     RegistrationComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
