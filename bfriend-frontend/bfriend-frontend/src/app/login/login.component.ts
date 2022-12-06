@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from "./login.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {Router} from "@angular/router";
 
 declare var $: any;
 
@@ -17,9 +18,8 @@ export class LoginComponent implements OnInit {
     }
   );
   error = '';
-  success = '';
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private router: Router) {
   }
 
 
@@ -35,15 +35,11 @@ export class LoginComponent implements OnInit {
       .pipe()
       // handle errors as well
       .subscribe({
-        next: data => {
-          this.success = 'Login successful: ' + JSON.stringify(data);
-          this.error = '';
-          console.log(data);
-          //this.router.navigate(['/home']);
+        next: () => {
+          this.router.navigate(['/home']);
         },
         error: error => {
           this.error = error.message;
-          this.success = '';
           console.log(error);
         },
         complete: () => {
