@@ -15,11 +15,12 @@ export class LoginService implements OnInit {
 
   postLogin(email: String, password: String) {
     let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8')
+      .set('Accept', 'application/json');
     return this.http.post("http://localhost:8080/api/auth/login",
       `{
       "email": "${email}",
       "password": "${password}"
-    }`, {headers: headers})
+    }`, {headers: headers, withCredentials: true});
   }
 }

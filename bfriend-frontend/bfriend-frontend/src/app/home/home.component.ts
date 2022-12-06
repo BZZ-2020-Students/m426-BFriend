@@ -16,17 +16,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private homeService: HomeService) {
     this.homeService
-      .getUser()
-      .pipe(
-        catchError(error => {
-          if (error.error instanceof ErrorEvent) {
-            this.errorMsg = `Error: ${error.error.message}`;
-          } else {
-            this.errorMsg = `Error: ${error.message}`;
-          }
-          return of([]);
-        })
-      );
+      .getUser();
   }
 
   ngOnInit(): void {
