@@ -1,33 +1,14 @@
-<style>
-  #rot {
-    color: red;
-  }
-</style>
-<mat-card>
-  <mat-card-content>
-    <form [formGroup]="loginForm" id="Login" (ngSubmit)="onSubmit()">
-      <h2>Log In</h2>
-      <mat-form-field>
-        <input matInput type="email" placeholder="Email" formControlName="email" name="email">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput type="password" placeholder="Password" formControlName="password" name="password">
-      </mat-form-field>
-      <button mat-raised-button color="primary" type="submit">Login</button>
-    </form>
-
-    <div>
-      {{success}}
-    </div>
-    <div id="rot">
-      {{error}}
-    </div>
-  </mat-card-content>
-</mat-card>
-
-
-<<h1>Hello {{userName}}</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+</head>
+<body>
+<h1>Hello {{firstname}} {{lastname}}</h1>
 <h2>Welcome to the bfriend platform</h2>
-<p>{{errorMsg}}</p>
 <p>Here you can find people with the same interest as you and who are searching for a teammate.</p>
-
+<!-- image from base64 -->
+<img src="{{profilepicture}}" alt="Profilepicture">
+</body>
+</html>

@@ -2,3 +2,5 @@
 .idea/
 
 Backend/bfriend/bfriend.iml
+
+bfriend-frontend/bfriend-frontend/package-lock.json
