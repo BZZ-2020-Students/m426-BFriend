@@ -1,6 +1,7 @@
 package bzz.groupa.bfriend.security.payload.response;
 
 import bzz.groupa.bfriend.model.UserRole;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,10 +17,17 @@ import java.util.Set;
 @Builder
 public class UserInfoResponse {
     private final List<String> roles;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Long id;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String email;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String firstName;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String lastName;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String profilepicture;
 
     public UserInfoResponse() {
         this.roles = new ArrayList<>();
@@ -35,4 +43,6 @@ public class UserInfoResponse {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+
 }

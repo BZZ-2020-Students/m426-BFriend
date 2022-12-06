@@ -10,7 +10,7 @@ public class LocationStringValidator implements ConstraintValidator<LocationStri
             return true;
         }
 
-        // A location String contains the wikiDataID (1 letter + 5 digits) and the name of the location. separated by a semicolon
+        // A location String contains the wikiDataID and the name of the location. separated by a semicolon
         var split = value.split(";");
 
         if (split.length != 2) {

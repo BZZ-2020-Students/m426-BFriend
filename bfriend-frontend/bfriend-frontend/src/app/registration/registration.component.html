@@ -1,21 +1,55 @@
 <h2>Registration</h2>
-<form>
+<form [formGroup]="registerForm" id="register" (ngSubmit)="onSubmit()">
   <mat-form-field>
-    <mat-label>Name</mat-label>
-    <input matInput id="name" type="text">
+    <mat-label>Firstname</mat-label>
+    <input matInput id="firstname" type="text" formControlName="firstName">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Lastname</mat-label>
+    <input matInput id="lastname" type="text" formControlName="lastName">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Age</mat-label>
+    <input matInput id="age" type="number" formControlName="age">
   </mat-form-field>
   <mat-form-field>
     <mat-label>E-Mail</mat-label>
-    <input matInput id="email" type="email">
+    <input matInput id="email" type="email" formControlName="email">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Password</mat-label>
-    <input matInput id="password" type="password">
+    <input matInput id="password" type="password" formControlName="password">
   </mat-form-field>
   <mat-form-field>
-    <mat-label>Hobbies</mat-label>
-    <mat-select id="hobySelect">
-      <mat-option *ngFor="let hobby of hobbiesList" [value]="hobby">{{hobby}}</mat-option>
+    <mat-label>Select your gender</mat-label>
+    <mat-select formControlName="gender" id="gender">
+      <mat-option value="MALE">
+        Male
+      </mat-option>
+      <mat-option value="FEMALE">
+        Female
+      </mat-option>
+      <mat-option value="OTHER">
+        Other
+      </mat-option>
+
     </mat-select>
   </mat-form-field>
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput id="search" type="text" formControlName="locationSearch"
+           (ngModelChange)="getNewLocationData($event)">
+    <mat-hint>Search your location</mat-hint>
+    <mat-select formControlName="location" id="location" #location_selection>
+      <mat-option *ngFor="let location of foundLocations" [value]='location.combination'>
+        {{location.item_text}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <ng-multiselect-dropdown #hobby_selection [ngModelOptions]="{standalone: true}"
+                           [settings]="dropdownSettingsHobbies"
+                           [(ngModel)]="selectedHobbies"
+                           placeholder="Select your hobbies"
+  ></ng-multiselect-dropdown>
+  <button mat-raised-button color="primary" type="submit">Register</button>
 </form>

@@ -3,10 +3,8 @@ package bzz.groupa.bfriend.model;
 import bzz.groupa.bfriend.enums.Gender;
 import bzz.groupa.bfriend.enums.Hobby;
 import bzz.groupa.bfriend.util.annotation.LocationString;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
@@ -23,8 +21,9 @@ import static bzz.groupa.bfriend.util.GlobalVars.*;
 @Builder
 @EnableAutoConfiguration
 @AllArgsConstructor
-@Entity
 @Table(name = "users")
+@Entity
+@ToString
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -76,6 +75,12 @@ public class User {
     @Column(length = MAX_BASE64_LENGTH)
     private String profilePicture;
 
+    // all the users that this user likes or dislikes
+    @OneToMany(mappedBy = "user")
+    @ToString.Exclude
+    @JsonIgnore
+    private Set<UserLike> userLikes;
+
     private int age;
 
     private Date lastLogin;
@@ -85,13 +90,5 @@ public class User {
     public User() {
         accountCreated = new Date();
         lastLogin = accountCreated;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + email + '\'' +
-                ", roles=" + roles +
-                '}';
     }
 }
