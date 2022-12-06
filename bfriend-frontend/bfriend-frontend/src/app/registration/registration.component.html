@@ -1,0 +1,21 @@
+<h2>Registration</h2>
+<form>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput id="name" type="text">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>E-Mail</mat-label>
+    <input matInput id="email" type="email">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput id="password" type="password">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Hobbies</mat-label>
+    <mat-select id="hobySelect">
+      <mat-option *ngFor="let hobby of hobbiesList" [value]="hobby">{{hobby}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
