@@ -16,12 +16,20 @@
     <mat-label>Password</mat-label>
     <input matInput id="password" type="password" formControlName="password">
   </mat-form-field>
-  <ng-multiselect-dropdown #location_selection [ngModelOptions]="{standalone: true}"
-                           [settings]="dropdownSettingsLocation"
-                           [(ngModel)]="selectedLocation"
-                           (onFilterChange)="getNewLocationData($event)"
-                           placeholder="Select your location"
-  ></ng-multiselect-dropdown>
+  <!-- input search field with a container below it for displaying the results -->
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput id="search" type="text" formControlName="locationSearch"
+           (ngModelChange)="getNewLocationData($event)">
+    <mat-hint>Search your location</mat-hint>
+
+    <!--  option selection with only one selection, no multi  -->
+    <mat-select formControlName="location" id="location" (selectionChange)="onLocationSelect($event)">
+      <mat-option *ngFor="let location of foundLocations" [value]='location.combination'>
+        {{location.item_text}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <ng-multiselect-dropdown #hobby_selection [ngModelOptions]="{standalone: true}"
                            [settings]="dropdownSettingsHobbies"
                            [(ngModel)]="selectedHobbies"
