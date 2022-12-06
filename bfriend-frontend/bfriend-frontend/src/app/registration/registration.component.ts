@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {RegistrationService} from "./service/registration.service";
 
 
 @Component({
@@ -9,13 +10,13 @@ import {FormControl} from '@angular/forms';
 })
 export class RegistrationComponent implements OnInit {
   // hobbies = new FormControl('');
-  hobbiesList: Array<string> = new Array();
+  hobbiesList: Array<string> = [];
 
-  constructor() {
-    this.hobbiesList.push("Fussball")
-    this.hobbiesList.push("Velo")
-    this.hobbiesList.push("Gym")
-    this.hobbiesList.push("Boxen")
+  constructor(private registrationService: RegistrationService) {
+    this.registrationService.getHobbies().subscribe(data => {
+      console.log(data);
+      this.hobbiesList = data;
+    });
   }
 
   ngOnInit(): void {
