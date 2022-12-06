@@ -4,7 +4,7 @@ import bzz.groupa.bfriend.enums.EnumUserRole;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Getter
 @Setter
