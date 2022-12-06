@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HomeService} from "./home.service";
 import {User} from "./model/User";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -11,9 +12,8 @@ export class HomeComponent implements OnInit {
 
   firstname = '';
   lastname = '';
-  errorMsg: string = '';
 
-  constructor(private homeService: HomeService) {
+  constructor(private homeService: HomeService, private router: Router) {
     let user: User;
     this.homeService
       .getUser()
@@ -24,9 +24,8 @@ export class HomeComponent implements OnInit {
           this.firstname = user.firstName;
           this.lastname = user.lastName;
         },
-        error: error => {
-          this.errorMsg = error.message;
-          console.log(error);
+        error: () => {
+          this.router.navigate(['/']);
         },
       });
   }
