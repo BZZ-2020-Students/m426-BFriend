@@ -1,9 +1,10 @@
 package bzz.groupa.bfriend.model;
 
 import bzz.groupa.bfriend.enums.LikeState;
-import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
+import javax.persistence.*;
 
 @Getter
 @Setter

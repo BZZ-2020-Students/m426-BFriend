@@ -4,10 +4,10 @@ import bzz.groupa.bfriend.enums.Gender;
 import bzz.groupa.bfriend.enums.Hobby;
 import bzz.groupa.bfriend.util.annotation.LocationString;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -19,9 +19,9 @@ import static bzz.groupa.bfriend.util.GlobalVars.*;
 @Getter
 @Setter
 @Builder
+@EnableAutoConfiguration
 @AllArgsConstructor
 @Table(name = "users")
-@EnableAutoConfiguration
 @Entity
 @ToString
 public class User {
