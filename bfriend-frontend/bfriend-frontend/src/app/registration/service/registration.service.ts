@@ -9,7 +9,7 @@ import {environment} from "../../../environments/environment";
 })
 export class RegistrationService {
   // get url from .env file
-  public BACKEND_URL = `${environment.BACKEND_URL}`;
+  private BACKEND_URL = `${environment.BACKEND_URL}`;
 
   constructor(private http: HttpClient) {
 
