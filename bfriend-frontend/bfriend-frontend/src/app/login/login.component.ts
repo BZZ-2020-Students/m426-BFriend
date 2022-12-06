@@ -7,8 +7,7 @@ declare var $: any;
 @Component({
   selector: 'app-home',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.html']
-
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   //authForm: FormControl = new FormControl('');
@@ -37,12 +36,14 @@ export class LoginComponent implements OnInit {
       // handle errors as well
       .subscribe({
         next: data => {
-          this.success = 'Login successful';
+          this.success = 'Login successful: ' + JSON.stringify(data);
+          this.error = '';
           console.log(data);
           //this.router.navigate(['/home']);
         },
         error: error => {
-          this.error = error;
+          this.error = error.message;
+          this.success = '';
           console.log(error);
         },
         complete: () => {
