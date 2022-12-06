@@ -9,7 +9,8 @@ import {User} from "./User";
 })
 export class HomeComponent implements OnInit {
 
-  userName = '';
+  firstname = '';
+  lastname = '';
   errorMsg: string = '';
 
   constructor(private homeService: HomeService) {
@@ -20,16 +21,13 @@ export class HomeComponent implements OnInit {
       .subscribe({
         next: data => {
           user = data;
-          this.userName = user.firstName;
-          console.log(user);
+          this.firstname = user.firstName;
+          this.lastname = user.lastName;
         },
         error: error => {
           this.errorMsg = error.message;
           console.log(error);
         },
-        complete: () => {
-          console.log('complete');
-        }
       });
   }
 
