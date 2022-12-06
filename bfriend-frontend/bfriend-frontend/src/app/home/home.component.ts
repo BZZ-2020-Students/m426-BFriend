@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HomeService} from "./home.service";
-import {User} from "./User";
+import {User} from "./model/User";
 
 @Component({
   selector: 'app-home',
