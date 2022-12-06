@@ -9,6 +9,10 @@
     <input matInput id="lastname" type="text" formControlName="lastName">
   </mat-form-field>
   <mat-form-field>
+    <mat-label>Age</mat-label>
+    <input matInput id="age" type="number" formControlName="age">
+  </mat-form-field>
+  <mat-form-field>
     <mat-label>E-Mail</mat-label>
     <input matInput id="email" type="email" formControlName="email">
   </mat-form-field>
@@ -16,15 +20,27 @@
     <mat-label>Password</mat-label>
     <input matInput id="password" type="password" formControlName="password">
   </mat-form-field>
-  <!-- input search field with a container below it for displaying the results -->
+  <mat-form-field>
+    <mat-label>Select your gender</mat-label>
+    <mat-select formControlName="gender" id="gender">
+      <mat-option value="MALE">
+        Male
+      </mat-option>
+      <mat-option value="FEMALE">
+        Female
+      </mat-option>
+      <mat-option value="OTHER">
+        Other
+      </mat-option>
+
+    </mat-select>
+  </mat-form-field>
   <mat-form-field>
     <mat-label>Search</mat-label>
     <input matInput id="search" type="text" formControlName="locationSearch"
            (ngModelChange)="getNewLocationData($event)">
     <mat-hint>Search your location</mat-hint>
-
-    <!--  option selection with only one selection, no multi  -->
-    <mat-select formControlName="location" id="location" (selectionChange)="onLocationSelect($event)">
+    <mat-select formControlName="location" id="location" #location_selection>
       <mat-option *ngFor="let location of foundLocations" [value]='location.combination'>
         {{location.item_text}}
       </mat-option>

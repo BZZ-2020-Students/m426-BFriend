@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../model/User";
 import {environment} from "../../../environments/environment";
@@ -26,9 +26,30 @@ export class RegistrationService {
 
   }
 
-  sendData(user: User) {
-    this.http.post<User>('backendURL', user).subscribe(data => {
-    })
+  postRegister(user: User) {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8')
+      .set('Accept', 'application/json');
+
+    let hobbiesStringArray = "[";
+    user.hobbies.forEach(hobby => {
+      hobbiesStringArray += `"${hobby.toUpperCase()}",`;
+    });
+    hobbiesStringArray = hobbiesStringArray.substring(0, hobbiesStringArray.length - 1);
+    hobbiesStringArray += "]";
+
+    return this.http.post(`${this.BACKEND_URL}/auth/register`, `{
+        "firstname": "${user.firstname}",
+        "lastname": "${user.lastname}",
+        "hobbies": ${hobbiesStringArray},
+        "location": "${user.location}",
+        "gender": "${user.gender}",
+        "age": ${user.age},
+        "role": [],
+        "profilepicture": "${user.profilePicture}",
+        "email": "${user.email}",
+        "password": "${user.password}"
+    }`, {headers: headers, withCredentials: true});
   }
 
   getHobbies(): Observable<string[]> {
