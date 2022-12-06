@@ -24,6 +24,7 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import {LoginComponent} from "./login/login.component";
+import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {LoginComponent} from "./login/login.component";
     MatFormFieldModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]
