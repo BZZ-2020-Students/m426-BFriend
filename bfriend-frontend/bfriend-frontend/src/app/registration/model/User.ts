@@ -8,4 +8,5 @@ export interface User {
   gender: string
   age: number
   profilePicture: string
+  role: string[]
 }

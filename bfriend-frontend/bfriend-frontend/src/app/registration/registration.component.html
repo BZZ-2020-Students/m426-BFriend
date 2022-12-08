@@ -51,5 +51,13 @@
                            [(ngModel)]="selectedHobbies"
                            placeholder="Select your hobbies"
   ></ng-multiselect-dropdown>
+  <div>
+    <span>For Demo purpose only: </span>
+    <ng-multiselect-dropdown #userRole_selection [ngModelOptions]="{standalone: true}"
+                             [settings]="dropdownSettingsUserRoles"
+                             [(ngModel)]="selectedUserRoles"
+                             placeholder="Select your roles"
+    ></ng-multiselect-dropdown>
+  </div>
   <button mat-raised-button color="primary" type="submit">Register</button>
 </form>

@@ -35,8 +35,19 @@ export class RegistrationService {
     user.hobbies.forEach(hobby => {
       hobbiesStringArray += `"${hobby.toUpperCase()}",`;
     });
-    hobbiesStringArray = hobbiesStringArray.substring(0, hobbiesStringArray.length - 1);
+    if (hobbiesStringArray.endsWith(",")) {
+      hobbiesStringArray = hobbiesStringArray.substring(0, hobbiesStringArray.length - 1);
+    }
     hobbiesStringArray += "]";
+
+    let userRolesStringArray = "[";
+    user.role.forEach(role => {
+      userRolesStringArray += `"${role.toUpperCase()}",`;
+    });
+    if (userRolesStringArray.endsWith(",")) {
+      userRolesStringArray = userRolesStringArray.substring(0, userRolesStringArray.length - 1);
+    }
+    userRolesStringArray += "]";
 
     return this.http.post(`${this.BACKEND_URL}/auth/register`, `{
         "firstname": "${user.firstname}",
@@ -45,7 +56,7 @@ export class RegistrationService {
         "location": "${user.location}",
         "gender": "${user.gender}",
         "age": ${user.age},
-        "role": [],
+        "role": ${userRolesStringArray},
         "profilepicture": "${user.profilePicture}",
         "email": "${user.email}",
         "password": "${user.password}"
@@ -54,6 +65,10 @@ export class RegistrationService {
 
   getHobbies(): Observable<string[]> {
     return this.http.get<string[]>(this.BACKEND_URL + '/hobby/all');
+  }
+
+  getUserRoles(): Observable<string[]> {
+    return this.http.get<string[]>(this.BACKEND_URL + '/userRoles/all');
   }
 
   getLocations(query: string): Observable<LocationObject> {
