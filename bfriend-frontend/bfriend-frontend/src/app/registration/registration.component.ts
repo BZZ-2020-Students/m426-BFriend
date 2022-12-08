@@ -16,6 +16,8 @@ interface DropDownItem {
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
+  emailAlreadyExists = false;
+  emailErrorClass = '';
   registerForm: FormGroup = new FormGroup({
       firstName: new FormControl(''),
       lastName: new FormControl(''),
@@ -62,6 +64,13 @@ export class RegistrationComponent implements OnInit {
     this.registrationService.postRegister(user).subscribe({
       next: (response) => {
         console.log(response);
+      },
+      error: (error) => {
+        switch (error.status) {
+          case 409:
+            this.registerForm.controls['email'].setErrors({'incorrect': true});
+        }
+        console.log(error.error);
       }
     });
   }
