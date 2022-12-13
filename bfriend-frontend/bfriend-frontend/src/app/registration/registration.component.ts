@@ -35,7 +35,6 @@ export class RegistrationComponent implements OnInit {
         Validators.email
       ]),
       location: new FormControl(''),
-      profilePicture: new FormControl(''),
       gender: new FormControl('',[
         Validators.required
       ]),
@@ -62,6 +61,8 @@ export class RegistrationComponent implements OnInit {
   foundLocations: DropDownItem[] = [];
   locationQueryInterval: any;
   error = '';
+  pp_error = '';
+  location_error = '';
 
   constructor(private registrationService: RegistrationService, private router: Router, private homeService: HomeService) {
     this.homeService
@@ -75,6 +76,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit() {
+
     console.log(this.registerForm.value);
 
     let user: User = {
@@ -90,27 +92,55 @@ export class RegistrationComponent implements OnInit {
       profilePicture: this.cardImageBase64
     }
 
-    this.registrationService.postRegister(user).subscribe({
-      next: () => {
-        this.router.navigate(['/home']);
-      },
-      error: (error) => {
-        switch (error.status) {
-          case 409:
-            this.registerForm.controls['email'].setErrors({'incorrect': true});
-            break
-          case 400:
-            this.error = 'Please enter data!!';
-            break
-          case 401:
-            this.error = 'Incorrect login data!! Please enter the right credentials';
-            break
+    let pp_checked : boolean = false;
+    let location_checked : boolean = false;
 
+    if (!user.profilePicture.includes('data:image/png;base64,')){
+      this.removeImage()
+      this.pp_error = 'Something went wrong with the picture!!'
+      pp_checked = false;
+    } else {
+      this.pp_error = ''
+      pp_checked = true;
+    }
+
+    if (user.location.split(';').length < 2){
+      this.location_error = 'Something went wrong with the location!!'
+      location_checked = false;
+
+    }else {
+      this.location_error = '';
+      location_checked = true;
+    }
+
+    if (pp_checked && location_checked) {
+
+      this.registrationService.postRegister(user).subscribe({
+        next: () => {
+          this.router.navigate(['/home']);
+        },
+        error: (error) => {
+          switch (error.status) {
+            case 409:
+              this.registerForm.controls['email'].setErrors({'incorrect': true});
+              break
+            case 400:
+              this.error = 'Please enter data!!';
+              break
+            case 401:
+              this.error = 'Incorrect login data!! Please enter the right credentials';
+              break
+
+          }
+
+          console.log(error.error);
         }
+      });
+    }
 
-        console.log(error.error);
-      }
-    });
+
+
+
   }
 
   ngOnInit(): void {
