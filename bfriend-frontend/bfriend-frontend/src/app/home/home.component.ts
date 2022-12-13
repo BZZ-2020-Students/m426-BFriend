@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "./model/User";
 import {AppService} from "../app.service";
+import {User} from "./model/User";
 
 @Component({
   selector: 'app-home',
@@ -21,6 +21,5 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 }
