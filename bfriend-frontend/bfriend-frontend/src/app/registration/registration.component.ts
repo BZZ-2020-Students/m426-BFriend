@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MyLocation, RegistrationService} from "./service/registration.service";
 import {MatSelectBase} from "@angular/material/select";
 import {User} from "./model/User";
@@ -21,14 +21,30 @@ export class RegistrationComponent implements OnInit {
   emailAlreadyExists = false;
   emailErrorClass = '';
   registerForm: FormGroup = new FormGroup({
-      firstName: new FormControl(''),
-      lastName: new FormControl(''),
-      email: new FormControl(''),
+      firstName: new FormControl('',[
+        Validators.required,
+        Validators.minLength(2)
+      ]),
+      lastName: new FormControl('',[
+        Validators.required,
+        Validators.minLength(2)
+      ]),
+      email: new FormControl('',[
+        Validators.required,
+        Validators.email
+      ]),
       location: new FormControl(''),
       profilePicture: new FormControl(''),
-      gender: new FormControl(''),
-      age: new FormControl(''),
-      password: new FormControl(''),
+      gender: new FormControl('',[
+        Validators.required
+      ]),
+      age: new FormControl('',[
+        Validators.required
+      ]),
+      password: new FormControl('',[
+        Validators.required,
+        Validators.minLength(6)
+      ]),
       locationSearch: new FormControl(''),
     }
   );
@@ -43,6 +59,7 @@ export class RegistrationComponent implements OnInit {
   @ViewChild('location_selection') locationSelection: MatSelectBase | undefined;
   foundLocations: DropDownItem[] = [];
   locationQueryInterval: any;
+  error = '';
 
   constructor(private registrationService: RegistrationService, private router: Router, private homeService: HomeService) {
     this.homeService
@@ -79,7 +96,16 @@ export class RegistrationComponent implements OnInit {
         switch (error.status) {
           case 409:
             this.registerForm.controls['email'].setErrors({'incorrect': true});
+            break
+          case 400:
+            this.error = 'Please enter data!!';
+            break
+          case 401:
+            this.error = 'Incorrect login data!! Please enter the right credentials';
+            break
+
         }
+
         console.log(error.error);
       }
     });
