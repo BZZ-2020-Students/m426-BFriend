@@ -19,13 +19,14 @@ import {
   MatCardModule, MatDialogModule,MatTableModule,
   MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule
 } from '@angular/material';
-import {HomeServiceService} from "./home/home-service.service";
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     RegistrationComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
