@@ -66,12 +66,16 @@ public class AuthController {
             try {
                 User user = userRepository.findByEmail(username).orElseThrow(() -> new RuntimeException("Error: User not found."));
 
+                UserInfoResponse userInfoResponse = new UserInfoResponse(user.getId(),
+                        user.getEmail(),
+                        user.getFirstname(),
+                        user.getLastName(),
+                        user.getRoles());
+
+                userInfoResponse.setProfilepicture(user.getProfilePicture());
+
                 return ResponseEntity.ok()
-                        .body(new UserInfoResponse(user.getId(),
-                                user.getEmail(),
-                                user.getFirstname(),
-                                user.getLastName(),
-                                user.getRoles()));
+                        .body(userInfoResponse);
             } catch (RuntimeException e) {
                 return ResponseEntity.badRequest().body(new MessageResponse("Error: " + e.getMessage()));
             }
@@ -129,7 +133,7 @@ public class AuthController {
         Set<String> strRoles = signUpRequest.getRole();
         Set<UserRole> roles = new HashSet<>();
 
-        if (strRoles == null) {
+        if (strRoles == null || strRoles.isEmpty()) {
             UserRole userRole = roleRepository.findByName(EnumUserRole.PASSIVE_USER)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             roles.add(userRole);
@@ -163,6 +167,6 @@ public class AuthController {
                 .collect(Collectors.toList());
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
                 .body(new UserInfoResponse(userRoles, userDetails.getId(),
-                        userDetails.getUsername(), user.getFirstname(), user.getLastName()));
+                        userDetails.getUsername(), user.getFirstname(), user.getLastName(), null));
     }
 }

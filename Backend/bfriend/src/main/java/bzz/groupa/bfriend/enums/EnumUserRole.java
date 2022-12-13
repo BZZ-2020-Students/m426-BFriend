@@ -5,7 +5,8 @@ public enum EnumUserRole {
     PASSIVE_USER,
     DEACTIVATED_USER,
     ADMIN,
-    MODERATOR;
+    MODERATOR,
+    SUSPENDED_USER;
 
     public static EnumUserRole getRoleByString(String stringRole) {
         stringRole = stringRole.toLowerCase();

@@ -1,32 +1,37 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {HomeComponent} from './home/home.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RegistrationComponent } from './registration/registration.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RegistrationComponent} from './registration/registration.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
-import {FormsModule} from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 import {
-  MatCardModule, MatDialogModule,MatTableModule,
-  MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule
+  MatCardModule,
+  MatDialogModule,
+  MatIconModule,
+  MatMenuModule,
+  MatProgressSpinnerModule,
+  MatTableModule,
+  MatToolbarModule
 } from '@angular/material';
-import { HomepageComponent } from './homepage/homepage.component';
+import {LoginComponent} from "./login/login.component";
+import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     RegistrationComponent,
-    HomepageComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,23 +52,11 @@ import { HomepageComponent } from './homepage/homepage.component';
     MatFormFieldModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
-    HttpClientModule
-
+    HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
-  providers: [],
-  bootstrap: [AppComponent],
-  exports: [
-    MatButtonModule,
-    MatInputModule,
-    CommonModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatCardModule,
-    MatInputModule,
-    MatDialogModule,
-    MatTableModule,
-    MatMenuModule,
-    MatIconModule,
-    MatProgressSpinnerModule  ]
+  providers: [HttpClient],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

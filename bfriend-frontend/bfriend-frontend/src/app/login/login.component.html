@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+<style>
+  #red {
+    color: red;
+  }
+</style>
+<mat-card>
+  <mat-card-content>
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" id="Login">
+      <h2>Log In</h2>
+      <mat-form-field>
+        <input formControlName="email" matInput name="email" placeholder="Email" type="email">
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="password" matInput name="password" placeholder="Password" type="password">
+      </mat-form-field>
+      <button color="primary" mat-raised-button type="submit">Login</button>
+    </form>
+
+    <div id="red">
+      {{error}}
+    </div>
+  </mat-card-content>
+</mat-card>
+</body>
+</html>
