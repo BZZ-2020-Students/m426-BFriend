@@ -3,8 +3,6 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {MyLocation, RegistrationService} from "./service/registration.service";
 import {MatSelectBase} from "@angular/material/select";
 import {User} from "./model/User";
-import {Router} from "@angular/router";
-import {HomeService} from "../home/home.service";
 
 interface DropDownItem {
   item_id: string;
@@ -46,15 +44,7 @@ export class RegistrationComponent implements OnInit {
   foundLocations: DropDownItem[] = [];
   locationQueryInterval: any;
 
-  constructor(private registrationService: RegistrationService, private router: Router, private homeService: HomeService) {
-    this.homeService
-      .getUser()
-      .pipe()
-      .subscribe({
-        next: () => {
-          this.router.navigate(['/home']);
-        }
-      });
+  constructor(private registrationService: RegistrationService) {
   }
 
   onSubmit() {
@@ -75,7 +65,8 @@ export class RegistrationComponent implements OnInit {
 
     this.registrationService.postRegister(user).subscribe({
       next: () => {
-        this.router.navigate(['/home']);
+        // reload page
+        window.location.reload();
       },
       error: (error) => {
         switch (error.status) {

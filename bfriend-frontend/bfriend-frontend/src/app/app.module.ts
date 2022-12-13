@@ -25,6 +25,8 @@ import {
 } from '@angular/material';
 import {LoginComponent} from "./login/login.component";
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
+import { MatchingComponent } from './matching/matching.component';
+import {AppService} from "./app.service";
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
     HomeComponent,
     RegistrationComponent,
     LoginComponent,
+    MatchingComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,7 @@ import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot(),
   ],
-  providers: [HttpClient],
+  providers: [HttpClient, AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

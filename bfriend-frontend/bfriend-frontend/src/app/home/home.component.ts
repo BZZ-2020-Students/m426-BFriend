@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {HomeService} from "./home.service";
 import {User} from "./model/User";
-import {Router} from "@angular/router";
+import {AppService} from "../app.service";
 
 @Component({
   selector: 'app-home',
@@ -9,30 +8,19 @@ import {Router} from "@angular/router";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
   firstname = '';
   lastname = '';
   profilepicture = '';
 
-  constructor(private homeService: HomeService, private router: Router) {
-    let user: User;
-    this.homeService
-      .getUser()
-      .pipe()
-      .subscribe({
-        next: data => {
-          console.log(data);
-          user = data;
-          this.firstname = user.firstName;
-          this.lastname = user.lastName;
-          this.profilepicture = user.profilepicture;
-        },
-        error: () => {
-          this.router.navigate(['/']);
-        },
-      });
+  constructor(private globalService: AppService) {
+    globalService.getUser().then((user: User) => {
+      this.firstname = user.firstName;
+      this.lastname = user.lastName;
+      this.profilepicture = user.profilepicture;
+    });
   }
 
   ngOnInit(): void {
+
   }
 }

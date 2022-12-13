@@ -20,15 +20,8 @@ export class LoginComponent implements OnInit {
   );
   error = '';
 
-  constructor(private loginService: LoginService, private router: Router, private homeService: HomeService) {
-    this.homeService
-      .getUser()
-      .pipe()
-      .subscribe({
-        next: () => {
-          this.router.navigate(['/home']);
-        }
-      });
+  constructor(private loginService: LoginService) {
+
   }
 
 
@@ -45,7 +38,8 @@ export class LoginComponent implements OnInit {
       // handle errors as well
       .subscribe({
         next: () => {
-          this.router.navigate(['/home']);
+          // reload page
+          window.location.reload();
         },
         error: error => {
           this.error = error.message;
