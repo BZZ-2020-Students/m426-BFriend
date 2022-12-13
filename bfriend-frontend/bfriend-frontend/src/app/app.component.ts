@@ -23,7 +23,7 @@ export class AppComponent {
         error: () => {
           // if url contains anything else than login, redirect to login, if it contains register, redirect to register
           if (window.location.href.indexOf('login') === -1 && window.location.href.indexOf('register') === -1) {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/']);
           } else if (window.location.href.indexOf('register') !== -1) {
             this.router.navigate(['/register']);
           }
