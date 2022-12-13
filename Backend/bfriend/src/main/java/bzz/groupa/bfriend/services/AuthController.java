@@ -133,7 +133,7 @@ public class AuthController {
         Set<String> strRoles = signUpRequest.getRole();
         Set<UserRole> roles = new HashSet<>();
 
-        if (strRoles == null) {
+        if (strRoles == null || strRoles.isEmpty()) {
             UserRole userRole = roleRepository.findByName(EnumUserRole.PASSIVE_USER)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             roles.add(userRole);

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from "./login.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
+import {HomeService} from "../home/home.service";
 
 declare var $: any;
 
@@ -19,7 +20,15 @@ export class LoginComponent implements OnInit {
   );
   error = '';
 
-  constructor(private loginService: LoginService, private router: Router) {
+  constructor(private loginService: LoginService, private router: Router, private homeService: HomeService) {
+    this.homeService
+      .getUser()
+      .pipe()
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/home']);
+        }
+      });
   }
 
 

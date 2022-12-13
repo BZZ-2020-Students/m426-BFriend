@@ -12,15 +12,15 @@
 </style>
 <mat-card>
   <mat-card-content>
-    <form [formGroup]="loginForm" id="Login" (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" id="Login">
       <h2>Log In</h2>
       <mat-form-field>
-        <input matInput type="email" placeholder="Email" formControlName="email" name="email">
+        <input formControlName="email" matInput name="email" placeholder="Email" type="email">
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="password" placeholder="Password" formControlName="password" name="password">
+        <input formControlName="password" matInput name="password" placeholder="Password" type="password">
       </mat-form-field>
-      <button mat-raised-button color="primary" type="submit">Login</button>
+      <button color="primary" mat-raised-button type="submit">Login</button>
     </form>
 
     <div id="red">

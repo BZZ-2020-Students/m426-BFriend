@@ -10,6 +10,7 @@ import {environment} from "../../environments/environment";
 })
 export class HomeService implements OnInit {
   private BACKEND_URL = `${environment.BACKEND_URL}`;
+
   constructor(private http: HttpClient) {
   }
 
