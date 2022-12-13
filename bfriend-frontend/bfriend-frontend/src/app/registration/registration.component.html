@@ -32,7 +32,6 @@
       <mat-option value="OTHER">
         Other
       </mat-option>
-
     </mat-select>
   </mat-form-field>
   <mat-form-field>
@@ -46,6 +45,19 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <div>
+    <mat-label>Upload Profile picture</mat-label>
+    <a class="btn btn-danger" (click)="removeImage()" *ngIf="isImageSaved">Remove</a>
+    <div class="custom-file fileInputProfileWrap">
+      <input formControlName="imageUpload" type="file" (change)="fileChangeEvent($event)" class="fileInputProfile">
+      <div class="img-space">
+        <ng-container *ngIf="isImageSaved;">
+          <img [src]="cardImageBase64"/>
+        </ng-container>
+      </div>
+
+    </div>
+  </div>
   <ng-multiselect-dropdown #hobby_selection [(ngModel)]="selectedHobbies"
                            [ngModelOptions]="{standalone: true}"
                            [settings]="dropdownSettingsHobbies"
