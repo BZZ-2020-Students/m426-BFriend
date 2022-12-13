@@ -25,6 +25,7 @@ import {
 } from '@angular/material';
 import {LoginComponent} from "./login/login.component";
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
     HomeComponent,
     RegistrationComponent,
     LoginComponent,
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
