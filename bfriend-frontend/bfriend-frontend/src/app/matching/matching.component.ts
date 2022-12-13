@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AppService} from "../app.service";
+import {User} from "../home/model/User";
 
 @Component({
   selector: 'app-matching',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MatchingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private globalService: AppService) {
+    globalService.getUser().then((user: User) => {
+
+    });
+  }
 
   ngOnInit(): void {
   }
