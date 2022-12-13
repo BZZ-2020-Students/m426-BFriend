@@ -18,7 +18,6 @@ interface DropDownItem {
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  imageError: string = '';
   isImageSaved: boolean = false;
   cardImageBase64: string = '';
 
@@ -169,7 +168,7 @@ export class RegistrationComponent implements OnInit {
 
   _handleReaderLoaded(readerEvt: any) {
     let binaryString = readerEvt.target.result;
-    this.cardImageBase64 =`data:image/png;base64,${btoa(binaryString)}`;
+    this.cardImageBase64 = `data:image/png;base64,${btoa(binaryString)}`;
   }
 
   removeImage() {
