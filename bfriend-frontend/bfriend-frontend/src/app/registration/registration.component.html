@@ -1,4 +1,9 @@
 <h2>Registration</h2>
+<style>
+  #red {
+    color: red;
+  }
+</style>
 <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" id="register">
   <mat-form-field>
     <mat-label>Firstname</mat-label>
@@ -45,6 +50,9 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <div id="red">
+    {{location_error}}
+  </div>
   <div>
     <mat-label>Upload Profile picture</mat-label>
     <a class="btn btn-danger" (click)="removeImage()" *ngIf="isImageSaved">Remove</a>
@@ -57,6 +65,10 @@
       </div>
 
     </div>
+    <div id="red">
+      {{pp_error}}
+    </div>
+
   </div>
   <ng-multiselect-dropdown #hobby_selection [(ngModel)]="selectedHobbies"
                            [ngModelOptions]="{standalone: true}"
@@ -73,3 +85,6 @@
   </div>
   <button color="primary" mat-raised-button type="submit">Register</button>
 </form>
+<div id="red">
+  {{error}}
+</div>
