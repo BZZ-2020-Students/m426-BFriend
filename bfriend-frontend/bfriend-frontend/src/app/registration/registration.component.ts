@@ -1,10 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MyLocation, RegistrationService} from "./service/registration.service";
 import {MatSelectBase} from "@angular/material/select";
 import {User} from "./model/User";
-import {Router} from "@angular/router";
-import {HomeService} from "../home/home.service";
 
 interface DropDownItem {
   item_id: string;
@@ -18,18 +16,35 @@ interface DropDownItem {
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  emailAlreadyExists = false;
-  emailErrorClass = '';
+  isImageSaved: boolean = false;
+  cardImageBase64: string = '';
+
   registerForm: FormGroup = new FormGroup({
-      firstName: new FormControl(''),
-      lastName: new FormControl(''),
-      email: new FormControl(''),
+      firstName: new FormControl('',[
+        Validators.required,
+        Validators.minLength(2)
+      ]),
+      lastName: new FormControl('',[
+        Validators.required,
+        Validators.minLength(2)
+      ]),
+      email: new FormControl('',[
+        Validators.required,
+        Validators.email
+      ]),
       location: new FormControl(''),
-      profilePicture: new FormControl(''),
-      gender: new FormControl(''),
-      age: new FormControl(''),
-      password: new FormControl(''),
+      gender: new FormControl('',[
+        Validators.required
+      ]),
+      age: new FormControl('',[
+        Validators.required
+      ]),
+      password: new FormControl('',[
+        Validators.required,
+        Validators.minLength(6)
+      ]),
       locationSearch: new FormControl(''),
+      imageUpload: new FormControl('')
     }
   );
   @ViewChild('hobby_selection') hobbySelection: any;
@@ -43,19 +58,15 @@ export class RegistrationComponent implements OnInit {
   @ViewChild('location_selection') locationSelection: MatSelectBase | undefined;
   foundLocations: DropDownItem[] = [];
   locationQueryInterval: any;
+  error = '';
+  pp_error = '';
+  location_error = '';
 
-  constructor(private registrationService: RegistrationService, private router: Router, private homeService: HomeService) {
-    this.homeService
-      .getUser()
-      .pipe()
-      .subscribe({
-        next: () => {
-          this.router.navigate(['/home']);
-        }
-      });
+  constructor(private registrationService: RegistrationService) {
   }
 
   onSubmit() {
+
     console.log(this.registerForm.value);
 
     let user: User = {
@@ -68,21 +79,56 @@ export class RegistrationComponent implements OnInit {
       location: this.registerForm.value.location,
       password: this.registerForm.value.password,
       role: this.selectedUserRoles,
-      profilePicture: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAV4AAACWBAMAAABkyf1EAAAAG1BMVEXMzMyWlpacnJyqqqrFxcWxsbGjo6O3t7e+vr6He3KoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEcElEQVR4nO2aTW/bRhCGh18ij1zKknMkbbf2UXITIEeyMhIfRaF1exQLA/JRclslRykO+rs7s7s0VwytNmhJtsA8gHZEcox9PTs7uysQgGEYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhmEYhmGYr2OWRK/ReIKI8Zt7Hb19wTcQ0uTkGh13bQupcw7gPOvdo12/5CzNtNR7xLUtNtT3CGBQ6g3InjY720pvofUec22LJPr8PhEp2OMPyI40PdwWUdronCu9yQpdPx53bQlfLKnfOVhlnDYRBXve4Ov+IZTeMgdedm0NR+xoXJeQvdJ3CvziykSukwil16W/Oe7aGjIjqc/9ib4jQlJy0uArtN4A0+cvXFvDkmUJ47sJ1Y1ATLDNVXZkNPIepQzxy1ki9fqiwbUj/I+64zxWNzyZnPuhvohJ9K70VvXBixpcu2SAHU+Xd9EKdEJDNpYP3AQr3bQSpPQ6Y6/4dl1z7ZDbArsszjA7L0g7ibB0CDcidUWVoErvIMKZh2Xs0LUzcLW6V5NfiUgNEbaYmAVL6bXl0nJRc+1S72ua/D/cTjGPlQj7eUqd7A096rYlRjdPYlhz7VIvxpVG3cemDKF+WAwLY/6XelOZKTXXzsC4xvDjjtSN6kHLhLke6PrwM8h1raf40qjrGO7H9aTEbduucjS04ZrYU/4iuS5Z2Hdt0rvCLFdmLEXcU30AGddST62o+sLcf5l6k7CP+ru4pLYqX/VFyxbm/utQbx/r22ZEbTb2f5I2kns1Y1OQR8ZyofX+TjJxj1Rz7QQVnf1QzR26Oth0ueJVYcRP6ZUPac/Rx/5M6ixO1dhSrT3Y1DpiYmx3tF4ZUdpz9LD/dSg9PXES0LB71BwcGjKROuV28lnvnv7HHJsezheBGH5+X2CfSfRbMKW+5aGs3JFjMrjGibJc0S7TJzqjHrh2hDybj9XRXNZa89Aro55XBdbW5wti2c/5WJ7jJ1RolVUn/HWpb0I58Tziup6Rx7Dm2hnbRP1GM9PW/NFmQ4PtVRVN63Wvxfmu5sowDMMwDMMwDMMwDMMwDMMwDMMwzL+CpT//F/6beoV8zb2Jmt4Qryx6lTUCsENQ75HOkhXAO3EPVgyQtKtUy3C/e+FJg17Zjnew1Xrdb9InbG4WqfUAftG+WhLwPVyfg536+MU7m4C1CMk4ZznpXZzDYI1PDL2nS1hpvc5cNd7E2sJg05Fe7/7d3Fln8Cvc3bwB616auxsKl4WPghjemHrDqyDWeu1UNW5s2btPnSQ75oOdunEwWazfwgVG0kqluYCM9OIjWOGnfA2b9G4Ha63XKpvQ8perTvTifJNhi6+WMWmi7smEZf6G8MmhlyGq+NqP8GV84TLuJr7UIQVx+bDEoEpRZIz42gs40OuN4Mv8hXzelV7KX1isH+ewTWckikyVv+CfHuqVF7I16gN0VKypX6wPsE+zFPzkinolU9UH8OMGvSpnZqKsv13p/RsMun6X5x/y2LeAr8O66lsBwzBMP/wJfyGq8pgBk6IAAAAASUVORK5CYII="
+      profilePicture: this.cardImageBase64
     }
 
-    this.registrationService.postRegister(user).subscribe({
-      next: () => {
-        this.router.navigate(['/home']);
-      },
-      error: (error) => {
-        switch (error.status) {
-          case 409:
-            this.registerForm.controls['email'].setErrors({'incorrect': true});
+    let pp_checked : boolean = false;
+    let location_checked : boolean = false;
+
+    if (!user.profilePicture.includes('data:image/png;base64,')){
+      this.removeImage()
+      this.pp_error = 'Something went wrong with the picture!!'
+      pp_checked = false;
+    } else {
+      this.pp_error = ''
+      pp_checked = true;
+    }
+
+    if (user.location.split(';').length < 2){
+      this.location_error = 'Something went wrong with the location!!'
+      location_checked = false;
+
+    }else {
+      this.location_error = '';
+      location_checked = true;
+    }
+
+    if (pp_checked && location_checked) {
+
+      this.registrationService.postRegister(user).subscribe({
+        next: () => {
+          window.location.reload();
+        },
+        error: (error) => {
+          switch (error.status) {
+            case 409:
+              this.registerForm.controls['email'].setErrors({'incorrect': true});
+              break
+            case 400:
+              this.error = 'Please enter data!!';
+              break
+            case 401:
+              this.error = 'Incorrect login data!! Please enter the right credentials';
+              break
+
+          }
         }
-        console.log(error.error);
-      }
-    });
+      });
+    }
+
+
+
+
   }
 
   ngOnInit(): void {
@@ -147,5 +193,30 @@ export class RegistrationComponent implements OnInit {
         });
       }, 500);
     }
+  }
+
+  fileChangeEvent(evt: any) {
+    console.log("helloooo")
+    let files = evt.target.files;
+    let file = files[0];
+
+    if (files && file) {
+      let reader = new FileReader();
+
+      reader.onload = this._handleReaderLoaded.bind(this);
+      this.isImageSaved = true;
+
+      reader.readAsBinaryString(file);
+    }
+  }
+
+  _handleReaderLoaded(readerEvt: any) {
+    let binaryString = readerEvt.target.result;
+    this.cardImageBase64 = `data:image/png;base64,${btoa(binaryString)}`;
+  }
+
+  removeImage() {
+    this.cardImageBase64 = '';
+    this.isImageSaved = false;
   }
 }

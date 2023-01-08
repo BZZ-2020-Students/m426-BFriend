@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from "./login.service";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {HomeService} from "../home/home.service";
 
@@ -14,21 +14,20 @@ declare var $: any;
 export class LoginComponent implements OnInit {
   //authForm: FormControl = new FormControl('');
   loginForm: FormGroup = new FormGroup({
-      email: new FormControl(''),
-      password: new FormControl(''),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email
+      ]),
+      password: new FormControl('', [
+        Validators.minLength(6),
+        Validators.required
+      ]),
     }
   );
   error = '';
 
-  constructor(private loginService: LoginService, private router: Router, private homeService: HomeService) {
-    this.homeService
-      .getUser()
-      .pipe()
-      .subscribe({
-        next: () => {
-          this.router.navigate(['/home']);
-        }
-      });
+  constructor(private loginService: LoginService) {
+
   }
 
 
@@ -39,17 +38,31 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     let email = this.loginForm.controls['email'].value;
     let password = this.loginForm.controls['password'].value;
+    let email_validation = this.loginForm.controls['email'].value;
+    let password_validation = this.loginForm.controls['password'].value;
+
 
     this.loginService.postLogin(email, password)
       .pipe()
       // handle errors as well
       .subscribe({
         next: () => {
-          this.router.navigate(['/home']);
+          // reload page
+          window.location.reload();
         },
         error: error => {
-          this.error = error.message;
+          if (error.message.includes('401')) {
+            this.error = 'Incorrect login data!! Please enter the right credentials';
+          } else if (error.message.includes('400')) {
+            this.error = 'Please enter data!!';
+          }
+
         },
       });
   }
+
+
 }
+
+
+

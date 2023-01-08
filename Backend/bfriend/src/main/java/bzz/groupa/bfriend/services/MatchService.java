@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -65,27 +66,37 @@ public class MatchService {
                 }
 
                 Set<UserLike> userlikes = user.getUserLikes();
+                List<User> usersToRemove = new ArrayList<>();
                 for (User u : qualifiedUsers) {
-                    UserLike like = UserLike.builder()
-                            .likedUser(u)
-                            .user(user)
-                            .likeState(LikeState.LIKED)
-                            .build();
-
                     UserLike existingLike = userLikeRepository.findUserLikeByUserIdAndLikedUserId(user.getId(), u.getId());
-                    if (existingLike == null) {
-                        userlikes.add(like);
-
-                        userLikeRepository.save(like);
-                    } else {
-                        return ResponseEntity.ok(new MessageResponse("User already liked"));
+                    if (existingLike != null) {
+                        if (LikeState.UNDECIDED == existingLike.getLikeState()) {
+                            return ResponseEntity.ok(u);
+                        } else {
+                            // user has already been liked/disliked, remove from list
+                            usersToRemove.add(u);
+                        }
                     }
                 }
+                qualifiedUsers.removeAll(usersToRemove);
+
+                if (qualifiedUsers.size() == 0) {
+                    return ResponseEntity.ok(new MessageResponse("No users found"));
+                }
+                User randomUserToReturn = qualifiedUsers.get((int) (Math.random() * qualifiedUsers.size()));
+                UserLike like = UserLike.builder()
+                        .likeState(LikeState.UNDECIDED)
+                        .user(user)
+                        .likedUser(randomUserToReturn)
+                        .build();
+                userlikes.add(like);
+                userLikeRepository.save(like);
+
                 user.setUserLikes(userlikes);
 
                 userRepository.save(user);
 
-                return ResponseEntity.ok().body(qualifiedUsers);
+                return ResponseEntity.ok().body(randomUserToReturn);
             } catch (RuntimeException | IOException e) {
                 return ResponseEntity.badRequest().body(new MessageResponse("Error: " + e.getMessage()));
             }

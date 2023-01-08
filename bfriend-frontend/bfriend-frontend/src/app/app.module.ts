@@ -26,6 +26,8 @@ import {
 import {LoginComponent} from "./login/login.component";
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import { HomepageComponent } from './homepage/homepage.component';
+import { MatchingComponent } from './matching/matching.component';
+import {AppService} from "./app.service";
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     RegistrationComponent,
     LoginComponent,
     HomepageComponent,
+    MatchingComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot(),
   ],
-  providers: [HttpClient],
+  providers: [HttpClient, AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
