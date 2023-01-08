@@ -5,17 +5,66 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+
+    body {
+      background-image: url('background.png');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+    }
+
     #pro {
       border-radius: 25%;
+      background-color: #01186B;
     }
+
+    #logo {
+      font-style: italic;
+      font-size: 200%;
+    }
+
+    #first {
+      font-style: italic;
+      font-size: 400%;
+    }
+
+    #second {
+      font-style: italic;
+      font-size: 200%;
+      color: #01186B;
+    }
+
+
+
   </style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+<nav class="navbar" style="float:right;">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li><button id="pro" type="button" class="btn btn-primary navbar-btn">Pro</button></li>
+      <li class="active"><a href="#" style="color: #01186B;">Home</a></li>
+      <li><a href="#" style="color: #01186B;">Logout</a></li>
+      <li><a href="#" style="color: #01186B;">Profile</a></li>
+    </ul>
+  </div>
+</nav>
+<div id="logo" class="row">
+  <div class="col-sm-6" style="padding:4%;"><img src="bfriend_logo.png" alt="logo" width="10%" height="10%"><b>  Bfriend</b></div>
 
+</div>
+<div id="first" class="row">
+  <div class="col-sm-6" style="padding:4%; margin-bottom: -7%"><b>Find your Hobby Friend</b></div>
 
+</div>
+<div class="row">
+  <div class="col-sm-6" style="padding:4%;"><b id="second">This website is here to connect to other people with the same hobby as yours</b>
+    <p><button (click)="goToPage('registration')" type="button" class="btn btn-primary" style="background-color: #01186B;">GET STARTED!</button></p>
+  </div>
+</div>
 
 </body>
 </html>
