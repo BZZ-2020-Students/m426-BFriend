@@ -16,16 +16,21 @@ export class AppComponent {
       .getUser()
       .pipe()
       .subscribe({
-        next: (data) => {
+        next: async (data) => {
           this.globalService.setUser(data);
-          this.router.navigate(['/home']);
+          // this.router.navigate(['/home']);
+          if (window.location.href.indexOf('homepage') !== -1) {
+            await this.router.navigate(['/homepage']);
+          } else {
+            await this.router.navigate(['/home']);
+          }
         },
-        error: () => {
-          // if url contains anything else than login, redirect to login, if it contains register, redirect to register
+        error: async () => {
+          // if url contains anything else than login, redirect to the page login, if it contains register, redirect to the page register
           if (window.location.href.indexOf('login') === -1 && window.location.href.indexOf('register') === -1) {
-            this.router.navigate(['/']);
+            await this.router.navigate(['/']);
           } else if (window.location.href.indexOf('register') !== -1) {
-            this.router.navigate(['/register']);
+            await this.router.navigate(['/register']);
           }
         }
       });

@@ -5,6 +5,7 @@ import {RegistrationComponent} from "./registration/registration.component";
 import {LoginComponent} from "./login/login.component";
 import {HomepageComponent} from "./homepage/homepage.component";
 import {MatchingComponent} from "./matching/matching.component";
+import {AppComponent} from "./app.component";
 
 const routes: Routes = [
   {path: 'register', component: RegistrationComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'homepage', component: HomepageComponent},
   {path: 'matching', component: MatchingComponent},
+  {path: 'app', component: AppComponent},
 ];
 
 @NgModule({
