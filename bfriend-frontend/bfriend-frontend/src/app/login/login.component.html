@@ -3,30 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-<style>
-  #red {
-    color: red;
-  }
-</style>
-<mat-card>
-  <mat-card-content>
-    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" id="Login">
-      <h2>Log In</h2>
-      <mat-form-field>
-        <input formControlName="email" matInput name="email" placeholder="Email" type="email">
-      </mat-form-field>
-      <mat-form-field>
-        <input formControlName="password" matInput name="password" placeholder="Password" type="password">
-      </mat-form-field>
-      <button color="primary" mat-raised-button type="submit">Login</button>
-    </form>
 
-    <div id="red">
-      {{error}}
+<div id="box">
+  <form>
+    <h2>Log In</h2>
+    <div class="form-group" (ngSubmit)="onSubmit()" [formGroup]="loginForm" id="Login">
+      <label for="formGroupExampleInput" class="inner-element">Email</label>
+      <input class="inner-element" type="email" class="form-control" id="formGroupExampleInput">
     </div>
-  </mat-card-content>
-</mat-card>
+    <div class="form-group">
+      <label class="inner-element" for="formGroupExampleInput2">Password</label>
+      <input class="inner-element" type="password" class="form-control" id="formGroupExampleInput2">
+    </divSign in</button>
+    <span class="link" class="inner-element" >Haben sie noch keinen Account?</span>
+    <br>
+    <span class="link" class="inner-element" >Password vergessen?</span>
+  </form>
+
+</div>
+<div id="red">
+  {{error}}
+</div>
 </body>
 </html>
